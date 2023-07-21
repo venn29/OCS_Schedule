@@ -16,7 +16,7 @@
  *
  */
 #include "tcp-congestion-ops.h"
-
+#include "ns3/simulator.h"
 #include "ns3/log.h"
 
 namespace ns3
@@ -167,7 +167,7 @@ TcpNewReno::SlowStart(Ptr<TcpSocketState> tcb, uint32_t segmentsAcked)
     if (segmentsAcked >= 1)
     {
         tcb->m_cWnd += tcb->m_segmentSize;
-        NS_LOG_INFO("In SlowStart, updated to cwnd " << tcb->m_cWnd << " ssthresh "
+        NS_LOG_INFO(Simulator::Now() << " In SlowStart, updated to cwnd " << tcb->m_cWnd << " ssthresh "
                                                      << tcb->m_ssThresh);
         return segmentsAcked - 1;
     }
@@ -245,7 +245,9 @@ TcpNewReno::GetSsThresh(Ptr<const TcpSocketState> state, uint32_t bytesInFlight)
 {
     NS_LOG_FUNCTION(this << state << bytesInFlight);
 
-    return std::max(2 * state->m_segmentSize, bytesInFlight / 2);
+//    return std::max(2 * state->m_segmentSize, bytesInFlight / 2);
+    //changed by venn for ocs
+    return std::max(4 * state->m_segmentSize, bytesInFlight / 2);
 }
 
 Ptr<TcpCongestionOps>

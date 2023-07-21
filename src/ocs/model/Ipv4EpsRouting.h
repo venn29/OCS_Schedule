@@ -41,8 +41,6 @@ class Flow : public Object
         this->srcport = src_port;
         this->destport = dst_port;
         this->proto = protocol;
-        this->left_ack = this->right_ack = 0;
-        this->max_cwnd = 0;
     }
     ~Flow(){};
 
@@ -106,37 +104,21 @@ class Flow : public Object
 
     void DropPacket(){
         this->enqueued = false;
-        this->left_ack = this->right_ack;
-        this->max_cwnd = 0;
+        this->sentp = 0;
     }
 
     bool GetEnqueueStatus(){return this->enqueued;}
 
-    size_t GetCwnd() {return this->max_cwnd;}
+    size_t GetSent() {return this->sentp;}
 
     //below 2 functions
     //receive data packet, update right_ack
-    void ReceiveSequence(uint32_t sequence,uint32_t length) {
+    void ReceiveSequence() {
         //retransmission
-        if(sequence+length <= right_ack)
-        {
-            left_ack = right_ack;
-            return ;
-        }
-        if(sequence >= right_ack)
-        {
-            left_ack = sequence;
-            right_ack = sequence+ length;
-        }
-        this->right_ack = sequence+length;
-        if(right_ack - left_ack > max_cwnd)
-            max_cwnd = right_ack - left_ack;
+       ++this->sentp;
     }
-    //receive ack packet, update right ack
-    void ReceiveAck(uint32_t acknumber){
-        if(acknumber <= right_ack && acknumber>left_ack)
-            this->left_ack = acknumber;
-    }
+
+    void SetEnqueued(){this->enqueued = true;}
 
   private:
     Ipv4Address srcip,destip;
@@ -145,8 +127,8 @@ class Flow : public Object
     size_t hash_value;
     //status
     bool enqueued;
-    size_t left_ack,right_ack;
-    size_t max_cwnd;
+    //sended packets during warm up process
+    size_t sentp;
 };
 
 
@@ -215,6 +197,8 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
 
     void SetBypassStrategy(BypassStrategy bs) {this->m_bypass = bs;}
 
+    void SetSSthresh(uint32_t sst){this->ssthresh = sst;}
+
   protected:
     void DoDispose() override;
 
@@ -280,7 +264,7 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
     //
     BypassStrategy m_bypass;
     //
-    uint32_t cwnd_thresh;
+    uint32_t ssthresh;
 };
 }
 

@@ -188,15 +188,6 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     else
         return false;
 
-    //process ack
-    uint32_t acknumber = tcpHeader.GetAckNumber().GetValue();
-    if(acknumber > 1){
-        //if the ack packet go to our subnet, following statements can be optimized
-        //for ack flow , src<-->dst
-        Ptr<Flow> ackpflow = this->Getflow(Flow::HashPacket(ipHeader.GetDestination(),ipHeader.GetSource(),protocal,dstport,srcport));
-        if(ackpflow)
-            ackpflow->ReceiveAck(acknumber);
-    }
     //we do not have any entry for the downlink acks
     Ptr<Ipv4Route> rtentry = LookupEps(ipHeader.GetDestination());
     //down traffic
@@ -242,7 +233,7 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     if(!pflow)
         pflow = this->AddUpFlow(ipHeader.GetSource(),ipHeader.GetDestination(),srcport,dstport,protocal);
 
-    //big flow packets of other flows, drop
+    //big flow packets of other destinations, drop
     if(q_idx<0 || q_idx >= queue_number){
         NS_LOG_LOGIC("Out of queue number");
         pflow->DropPacket();
@@ -269,25 +260,21 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
             else if (m_bypass == cwndbased)
             {
                 //going bypass, we do not take udp into consideration
-                if(!pflow->GetEnqueueStatus() && pflow->GetCwnd() < this->cwnd_thresh && protocal == 6)
+                if( pflow->GetSent() < this->ssthresh && protocal == 6)
                 {
-                    uint32_t se = tcpHeader.GetSequenceNumber().GetValue();
-                    uint32_t le = tcpHeader.GetLength();
-                    pflow->ReceiveSequence(se,le);
+                    pflow->ReceiveSequence();
                     return false;
                 }
             }
         }
         if(!flow_enqueued){
-            AddEnqueuedFlow(q_idx,ipHeader.GetSource(),ipHeader.GetDestination(),srcport,dstport,protocal);
+            pflow->SetEnqueued();
         }
     }
     //enqueue, we did not consider what if the queue is full
     //todo
 
-    uint32_t se = tcpHeader.GetSequenceNumber().GetValue();
-    uint32_t le = tcpHeader.GetLength();
-    pflow->ReceiveSequence(se,le);
+    pflow->ReceiveSequence();
 
     metaData.SetQueueIdx(q_idx);
     packet->AddPacketTag(metaData);

@@ -37,9 +37,12 @@ static void EpsRouteHelper(NodeContainer TORs,uint32_t queuenumber){
             return;
         }
         Ptr<Ipv4EpsRouting> epsRouting = new Ipv4EpsRouting(queuenumber,50,0.99,0.9);
-        epsRouting->SetBypassStrategy(Ipv4EpsRouting::nobypass);
+        epsRouting->SetBypassStrategy(Ipv4EpsRouting::cwndbased);
+        epsRouting->SetSSthresh(4);
         listrouting->AddRoutingProtocol(epsRouting,10);
     }
+
+
 }
 
 static void Cluster2ClusterAppHelper(NodeContainer servers, NodeContainer clients,Ipv4InterfaceContainer ServerIfaces[], int apppernode,uint16_t port_start,uint32_t maxbytes)
@@ -47,10 +50,28 @@ static void Cluster2ClusterAppHelper(NodeContainer servers, NodeContainer client
     uint32_t servernodenum = servers.GetN();
     uint32_t clientnodenum = clients.GetN();
     NS_ASSERT_MSG(servernodenum == clientnodenum, "Cluster to cluster servre number does not eqaul to client");
-    for(int i=0 ;i<apppernode;i++)
+//    for(int i=0 ;i<apppernode;i++)
+//    {
+//        uint16_t port = port_start+i;
+//        for(uint32_t j=0;j<servernodenum;j++)
+//        {
+//            Ipv4Address Addrj = ServerIfaces[j].GetAddress(1);
+//            NewBulkSendHelper senderj("ns3::TcpSocketFactory",InetSocketAddress(Addrj,port));
+//            PacketSinkHelper receiverj("ns3::TcpSocketFactory",InetSocketAddress(Ipv4Address::GetAny(),port));
+//            senderj.SetAttribute("MaxBytes", UintegerValue(maxbytes));
+//            senderj.SetAttribute("SendSize", UintegerValue(uint32_t(1440)));
+//            ApplicationContainer sendappj = senderj.Install(clients.Get(j));
+//            sendappj.Start(Seconds(0.00001));
+//            sendappj.Stop(Seconds(10));
+//            ApplicationContainer receiveappj = receiverj.Install(servers.Get(j));
+//            receiveappj.Start(Seconds(0));
+//            receiveappj.Stop(Seconds(10));
+//        }
+//    }
+    for(int i=0 ;i<1;i++)
     {
         uint16_t port = port_start+i;
-        for(uint32_t j=0;j<servernodenum;j++)
+        for(uint32_t j=0;j<1;j++)
         {
             Ipv4Address Addrj = ServerIfaces[j].GetAddress(1);
             NewBulkSendHelper senderj("ns3::TcpSocketFactory",InetSocketAddress(Addrj,port));
@@ -73,9 +94,9 @@ int main(int argc,char* argv[])
     CommandLine cmd;
     cmd.Parse(argc,argv);
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1440));
-    Config::SetDefault("ns3::TcpSocket::DelAckTimeout", TimeValue(MicroSeconds(2)));
+    Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(100)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(650)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
@@ -118,20 +139,20 @@ int main(int argc,char* argv[])
     //CoreSwitch Links
     PointToPointHelper CoreLinks;
     CoreLinks.SetDeviceAttribute("DataRate",StringValue("40Gbps"));
-    CoreLinks.SetChannelAttribute("Delay",StringValue("5us"));
+    CoreLinks.SetChannelAttribute("Delay",StringValue("4us"));
     CoreLinks.DisableFlowControl();
 
     //aggre Links
     PointToPointHelper AggLinks;
 
     AggLinks.SetDeviceAttribute("DataRate",StringValue("40Gbps"));
-    AggLinks.SetChannelAttribute("Delay",StringValue("5us"));
+    AggLinks.SetChannelAttribute("Delay",StringValue("4us"));
     AggLinks.DisableFlowControl();
 
     //Host Links
     PointToPointHelper HoLinks;
     HoLinks.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
-    HoLinks.SetChannelAttribute("Delay",StringValue("5us"));
+    HoLinks.SetChannelAttribute("Delay",StringValue("1us"));
     HoLinks.DisableFlowControl();
 
     //core device
@@ -378,7 +399,7 @@ int main(int argc,char* argv[])
     QueueSize queueSize =  QueueSize("800kB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
     OCSLinks.SetDeviceAttribute("DataRate", StringValue("80Gbps"));
-    OCSLinks.SetChannelAttribute("Delay", StringValue("10us"));
+    OCSLinks.SetChannelAttribute("Delay", StringValue("8us"));
     OCSLinks.SetMultiDeviceRate("80Gbps");
     OCSLinks.SetEnableFlowControl(false);
     NetDeviceContainer T0O,T1O,T2O,T3O,T4O,T5O,T6O,T7O;
@@ -449,7 +470,7 @@ int main(int argc,char* argv[])
     HoLinks.EnablePcap("tor",TORs, false);
 //    HoLinks.EnablePcap("agg",Aggs, false);
 
-//    LogComponentEnable("PointToPointNetDevice",LOG_LEVEL_ALL);
+    LogComponentEnable("TcpCongestionOps",LOG_LEVEL_INFO);
 //
 //    std::ofstream ofs;
 //    ofs.open("QueueSpace.tr",std::ios_base::out);
