@@ -175,14 +175,14 @@ RouteSchedule::SetRoutings()
         dvi->BeginWork();
     }
 
-
-
     //schedule configure event
     Simulator::Schedule(
         this->time_intervalNs,
         &RouteSchedule::SetNight,
         this
     );
+
+//    this->DoBufferRecord();
 
     return ;
 
@@ -233,7 +233,19 @@ RouteSchedule::SetNight()
         &RouteSchedule::SetRoutings,
         this
     );
+    this->DoBufferRecord();
     return !this->ocsrouting->DeviceMapEmpty();
 }
 
+void
+RouteSchedule::DoBufferRecord()
+{
+    for(auto md : this->devices_map)
+    {
+        md.second->RecordQueueBuffer(this->bufferoutfilestream);
+    }
 }
+
+
+}
+

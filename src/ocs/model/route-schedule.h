@@ -55,7 +55,10 @@ class RouteSchedule : public Object
     Time finishtime;
 
 //    Ptr<BufferRecorder> br;
+    //
+    std::ofstream* bufferoutfilestream;
 
+    void DoBufferRecord();
 
   public:
     static TypeId GetTypeId();
@@ -84,6 +87,12 @@ class RouteSchedule : public Object
     bool ModifyRoutingsEPS();
     //
     bool StartSchedule();
+    //
+    void SetBufferOutFile(std::string FilePath){
+        this->bufferoutfilestream = new std::ofstream();
+        this->bufferoutfilestream->open(FilePath,std::ios::out | std::ios::trunc);
+    }
+
 
 //    void SetBufferRecorder(Ptr<BufferRecorder> pbr ){this->br = pbr;}
 };

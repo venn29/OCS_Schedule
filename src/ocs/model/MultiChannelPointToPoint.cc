@@ -152,11 +152,20 @@ void
 MultiChannelPointToPointDevice::RecordQueueBuffer(std::ofstream* ostream)
 {
     Time now = Simulator::Now();
-    for(Ptr<Queue<Packet>> q:this->multi_queues)
+    uint32_t cnt = 0;
+    for(int i=this->working_queue_idx;cnt<queue_number;i=(i+1)%queue_number)
     {
-        uint32_t size = q->GetCurrentSize().GetValue();
-        *ostream<<now.GetSeconds()<<"\t"<<this->GetNode()->GetId()<<"\t"<<this->GetIfIndex()<<"\t"<<size<<"\n";
+        uint32_t  size = this->multi_queues[i]->GetNPackets();
+        *ostream<<now.GetSeconds()<<"\t"<<this->GetNode()->GetId()<<"\t"<<this->GetIfIndex()<<"\t"<<i<<"\t"<<size<<"\n";
+        cnt++;
     }
+//    for(Ptr<Queue<Packet>> q:this->multi_queues)
+//    {
+////        uint32_t size = q->GetCurrentSize().GetValue();
+//        uint32_t  size = q->GetNPackets();
+////        std::cout<<size;
+//        *ostream<<now.GetSeconds()<<"\t"<<this->GetNode()->GetId()<<"\t"<<this->GetIfIndex()<<"\t"<<size<<"\n";
+//    }
 }
 
 uint16_t

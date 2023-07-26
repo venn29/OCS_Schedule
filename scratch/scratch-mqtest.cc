@@ -50,34 +50,16 @@ static void Cluster2ClusterAppHelper(NodeContainer servers, NodeContainer client
     uint32_t servernodenum = servers.GetN();
     uint32_t clientnodenum = clients.GetN();
     NS_ASSERT_MSG(servernodenum == clientnodenum, "Cluster to cluster servre number does not eqaul to client");
-//    for(int i=0 ;i<apppernode;i++)
-//    {
-//        uint16_t port = port_start+i;
-//        for(uint32_t j=0;j<servernodenum;j++)
-//        {
-//            Ipv4Address Addrj = ServerIfaces[j].GetAddress(1);
-//            NewBulkSendHelper senderj("ns3::TcpSocketFactory",InetSocketAddress(Addrj,port));
-//            PacketSinkHelper receiverj("ns3::TcpSocketFactory",InetSocketAddress(Ipv4Address::GetAny(),port));
-//            senderj.SetAttribute("MaxBytes", UintegerValue(maxbytes));
-//            senderj.SetAttribute("SendSize", UintegerValue(uint32_t(1440)));
-//            ApplicationContainer sendappj = senderj.Install(clients.Get(j));
-//            sendappj.Start(Seconds(0.00001));
-//            sendappj.Stop(Seconds(10));
-//            ApplicationContainer receiveappj = receiverj.Install(servers.Get(j));
-//            receiveappj.Start(Seconds(0));
-//            receiveappj.Stop(Seconds(10));
-//        }
-//    }
-    for(int i=0 ;i<1;i++)
+    for(int i=0 ;i<apppernode;i++)
     {
         uint16_t port = port_start+i;
-        for(uint32_t j=0;j<1;j++)
+        for(uint32_t j=0;j<servernodenum;j++)
         {
             Ipv4Address Addrj = ServerIfaces[j].GetAddress(1);
             NewBulkSendHelper senderj("ns3::TcpSocketFactory",InetSocketAddress(Addrj,port));
             PacketSinkHelper receiverj("ns3::TcpSocketFactory",InetSocketAddress(Ipv4Address::GetAny(),port));
             senderj.SetAttribute("MaxBytes", UintegerValue(maxbytes));
-            senderj.SetAttribute("SendSize", UintegerValue(uint32_t(1440)));
+            senderj.SetAttribute("SendSize", UintegerValue(uint32_t(1446)));
             ApplicationContainer sendappj = senderj.Install(clients.Get(j));
             sendappj.Start(Seconds(0.00001));
             sendappj.Stop(Seconds(10));
@@ -86,6 +68,7 @@ static void Cluster2ClusterAppHelper(NodeContainer servers, NodeContainer client
             receiveappj.Stop(Seconds(10));
         }
     }
+
 }
 
 
@@ -93,7 +76,7 @@ int main(int argc,char* argv[])
 {
     CommandLine cmd;
     cmd.Parse(argc,argv);
-    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1440));
+    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1446));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
     Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(650)));
@@ -433,6 +416,7 @@ int main(int argc,char* argv[])
     //ocs routing
     Ptr<Ipv4OcsRouting> OcsRoutingP = new Ipv4OcsRouting();
     Ptr<RouteSchedule> RouteScheduler = new RouteSchedule(MicroSeconds(180), MicroSeconds(20),MicroSeconds(0),queuenumber,OCS.Get(0),OcsRoutingP, Seconds(10));
+    RouteScheduler->SetBufferOutFile("./BufferRecord.txt");
     Ptr<Ipv4L3Protocol> OcsIpv4 = OCS.Get(0)->GetObject<Ipv4L3Protocol>();
     OcsIpv4->SetRoutingProtocol(OcsRoutingP);
     //eps routing
@@ -452,7 +436,7 @@ int main(int argc,char* argv[])
 //    ApplicationContainer receiveapp0 = receiver0.Install(Hosts0.Get(0));
 //    receiveapp0.Start(Seconds(0));
 //    receiveapp0.Stop(Seconds(10));
-    Cluster2ClusterAppHelper(Hosts0,Hosts2,TorIface0,1,40001,1024*1024);
+    Cluster2ClusterAppHelper(Hosts0,Hosts2,TorIface0,1,10001,1024*1024);
 
 
     AsciiTraceHelper ascii;
@@ -463,12 +447,12 @@ int main(int argc,char* argv[])
     HoLinks.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 //    OCSLinks.EnableAscii(ascii.CreateFileStream("TOR.tr"),TORs);
 //    OCSLinks.EnableAscii(ascii.CreateFileStream("Agg.tr"),Aggs);
-//    HoLinks.EnablePcap("ho",Hosts0, false);
-//    HoLinks.EnablePcap("ho",Hosts2, false);
     HoLinks.EnablePcap("ocs",OCS);
 //    HoLinks.EnablePcap("core",Cores, false);
     HoLinks.EnablePcap("tor",TORs, false);
-//    HoLinks.EnablePcap("agg",Aggs, false);
+    HoLinks.EnablePcap("agg",Aggs, false);
+    HoLinks.EnablePcap("HO2",Hosts2, false);
+    HoLinks.EnablePcap("HO0",Hosts0, false);
 
     LogComponentEnable("TcpCongestionOps",LOG_LEVEL_INFO);
 //

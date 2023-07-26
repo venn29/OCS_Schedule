@@ -19,7 +19,10 @@ BufferRecorder::GetTypeId()
     return tid;
 }
 
-BufferRecorder::BufferRecorder()
+BufferRecorder::BufferRecorder():
+      recordInterval(Seconds(1.0)),
+      outfilestream(nullptr),
+      queuenumber(8)
 {
 
 }
