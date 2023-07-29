@@ -18,6 +18,7 @@ build_lib(
                  model/MultiChannelPointToPoint.cc
                  model/OcsUtils.cc
                  model/new-bulk-send-application.cc
+                 model/PFifoFlowSizeQueueDisc.cc
 #                 model/BufferRecorder.cc
                  helper/ocs-helper.cc
                  helper/MultideviceHelper.cc
@@ -28,6 +29,7 @@ build_lib(
                  model/MultiChannelPointToPoint.h
                  model/OcsUtils.h
                  model/new-bulk-send-application.h
+                 model/PFifoFlowSizeQueueDisc.h
 #                 model/BufferRecorder.h
                  helper/ocs-helper.h
                  helper/MultideviceHelper.h

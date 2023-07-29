@@ -8,6 +8,9 @@
 #include "ns3/internet-module.h"
 #include "ns3/point-to-point-module.h"
 #include "ns3/network-module.h"
+#include "ns3/traffic-control-layer.h"
+#include "ns3/traffic-control-helper.h"
+#include "ns3/queue-size.h"
 
 #include "ns3/ipv4-ocs-routing.h"
 #include "ns3/route-schedule.h"
@@ -17,6 +20,7 @@
 #include "ns3/MultideviceHelper.h"
 #include "ns3/new-bulk-send-helper.h"
 #include "ns3/new-bulk-send-application.h"
+#include "ns3/PFifoFlowSizeQueueDisc.h"
 //#include "ns3/BufferRecorder.h"
 
 #include <fstream>
@@ -41,8 +45,6 @@ static void EpsRouteHelper(NodeContainer TORs,uint32_t queuenumber){
         epsRouting->SetSSthresh(4);
         listrouting->AddRoutingProtocol(epsRouting,10);
     }
-
-
 }
 
 static void Cluster2ClusterAppHelper(NodeContainer servers, NodeContainer clients,Ipv4InterfaceContainer ServerIfaces[], int apppernode,uint16_t port_start,uint32_t maxbytes)
@@ -68,8 +70,20 @@ static void Cluster2ClusterAppHelper(NodeContainer servers, NodeContainer client
             receiveappj.Stop(Seconds(10));
         }
     }
-
 }
+
+
+
+void SetPfifoSizeQueueDisc(Ptr<NetDevice> dv,Ptr<TrafficControlLayer> tc)
+{
+    Ptr<PointToPointNetDevice> p2pdv = DynamicCast<PointToPointNetDevice>(dv);
+    p2pdv->SetQueueSize(QueueSize("3100B"));
+    tc->DeleteRootQueueDiscOnDevice(dv);
+    TrafficControlHelper tcHelper;
+    tcHelper.SetRootQueueDisc("ns3::PFifoFlowSizeQueueDisc");
+    tcHelper.Install(dv);
+}
+
 
 
 int main(int argc,char* argv[])
@@ -86,7 +100,7 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
     //    Time::SetResolution(Time::NS);
-    //nodes
+    //      nodes
 
     uint32_t servernumber = 16;
 
@@ -130,7 +144,7 @@ int main(int argc,char* argv[])
 
     AggLinks.SetDeviceAttribute("DataRate",StringValue("40Gbps"));
     AggLinks.SetChannelAttribute("Delay",StringValue("4us"));
-    AggLinks.DisableFlowControl();
+
 
     //Host Links
     PointToPointHelper HoLinks;
@@ -138,6 +152,7 @@ int main(int argc,char* argv[])
     HoLinks.SetChannelAttribute("Delay",StringValue("1us"));
     HoLinks.DisableFlowControl();
 
+//    Config::SetDefault("ns3::DropTailQueue::MaxSize",QueueSizeValue(QueueSize("150000B")));
     //core device
     NetDeviceContainer CoreDev0,CoreDev1,CoreDev2,CoreDev3,CoreDev4,CoreDev5,CoreDev6,CoreDev7;
     NetDeviceContainer CoreDev8,CoreDev9,CoreDev10,CoreDev11,CoreDev12,CoreDev13,CoreDev14,CoreDev15;
@@ -174,8 +189,8 @@ int main(int argc,char* argv[])
     AggDev7 = AggLinks.Install(Aggs.Get(3),TORs.Get(3));
 
     AggDev8 = AggLinks.Install(Aggs.Get(4),TORs.Get(4));
-    AggDev9 = AggLinks.Install(Aggs.Get(4),TORs.Get(4));
-    AggDev10 = AggLinks.Install(Aggs.Get(5),TORs.Get(5));
+    AggDev9 = AggLinks.Install(Aggs.Get(4),TORs.Get(5));
+    AggDev10 = AggLinks.Install(Aggs.Get(5),TORs.Get(4));
     AggDev11 = AggLinks.Install(Aggs.Get(5),TORs.Get(5));
 
     AggDev12 = AggLinks.Install(Aggs.Get(6),TORs.Get(6));
@@ -333,6 +348,62 @@ int main(int argc,char* argv[])
     AggIface14 = address.Assign(AggDev14);
     address.SetBase("40.5.0.0","255.255.0.0");
     AggIface15 = address.Assign(AggDev15);
+
+    //set queuedisc
+    //0
+    Ptr<Node> N0 = TORs.Get(0);
+    Ptr<Node> N1 = TORs.Get(1);
+    Ptr<TrafficControlLayer> Tc0 = N0->GetObject<TrafficControlLayer>();
+    Ptr<TrafficControlLayer> Tc1 = N1->GetObject<TrafficControlLayer>();
+    Ptr<NetDevice> d0 = AggDev0.Get(1);
+    Ptr<NetDevice> d1 = AggDev1.Get(1);
+    Ptr<NetDevice> d2 = AggDev2.Get(1);
+    Ptr<NetDevice> d3 = AggDev3.Get(1);
+    SetPfifoSizeQueueDisc(d0,Tc0);
+    SetPfifoSizeQueueDisc(d1,Tc1);
+    SetPfifoSizeQueueDisc(d2,Tc0);
+    SetPfifoSizeQueueDisc(d3,Tc1);
+    //1
+    Ptr<Node> N2 = TORs.Get(2);
+    Ptr<Node> N3 = TORs.Get(3);
+    Ptr<TrafficControlLayer> Tc2 = N2->GetObject<TrafficControlLayer>();
+    Ptr<TrafficControlLayer> Tc3 = N3->GetObject<TrafficControlLayer>();
+    Ptr<NetDevice> d4 = AggDev4.Get(1);
+    Ptr<NetDevice> d5 = AggDev5.Get(1);
+    Ptr<NetDevice> d6 = AggDev6.Get(1);
+    Ptr<NetDevice> d7 = AggDev7.Get(1);
+    SetPfifoSizeQueueDisc(d4,Tc2);
+    SetPfifoSizeQueueDisc(d5,Tc3);
+    SetPfifoSizeQueueDisc(d6,Tc2);
+    SetPfifoSizeQueueDisc(d7,Tc3);
+    //2
+    Ptr<Node> N4 = TORs.Get(4);
+    Ptr<Node> N5 = TORs.Get(5);
+    Ptr<TrafficControlLayer> Tc4 = N4->GetObject<TrafficControlLayer>();
+    Ptr<TrafficControlLayer> Tc5 = N5->GetObject<TrafficControlLayer>();
+    Ptr<NetDevice> d8 = AggDev8.Get(1);
+    Ptr<NetDevice> d9 = AggDev9.Get(1);
+    Ptr<NetDevice> d10 = AggDev10.Get(1);
+    Ptr<NetDevice> d11 = AggDev11.Get(1);
+    SetPfifoSizeQueueDisc(d8,Tc4);
+    SetPfifoSizeQueueDisc(d9,Tc5);
+    SetPfifoSizeQueueDisc(d10,Tc4);
+    SetPfifoSizeQueueDisc(d11,Tc5);
+    //3
+    Ptr<Node> N6 = TORs.Get(6);
+    Ptr<Node> N7 = TORs.Get(7);
+    Ptr<TrafficControlLayer> Tc6 = N6->GetObject<TrafficControlLayer>();
+    Ptr<TrafficControlLayer> Tc7 = N7->GetObject<TrafficControlLayer>();
+    Ptr<NetDevice> d12 = AggDev12.Get(1);
+    Ptr<NetDevice> d13 = AggDev13.Get(1);
+    Ptr<NetDevice> d14 = AggDev14.Get(1);
+    Ptr<NetDevice> d15 = AggDev15.Get(1);
+    SetPfifoSizeQueueDisc(d12,Tc6);
+    SetPfifoSizeQueueDisc(d13,Tc7);
+    SetPfifoSizeQueueDisc(d14,Tc6);
+    SetPfifoSizeQueueDisc(d15,Tc7);
+
+
 
     //Core-Agg Interfaces
     Ipv4InterfaceContainer CoreIface0,CoreIface1,CoreIface2,CoreIface3,CoreIface4,CoreIface5,CoreIface6,CoreIface7;

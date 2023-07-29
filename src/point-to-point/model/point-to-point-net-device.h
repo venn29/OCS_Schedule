@@ -29,7 +29,8 @@
 #include "ns3/ptr.h"
 #include "ns3/queue-fwd.h"
 #include "ns3/traced-callback.h"
-
+#include "ns3/queue-size.h"
+#include "ns3/queue.h"
 #include <cstring>
 
 namespace ns3
@@ -124,6 +125,12 @@ class PointToPointNetDevice : public NetDevice
      * \param queue Ptr to the new queue.
      */
     void SetQueue(Ptr<Queue<Packet>> queue);
+
+    void  SetQueueSize(QueueSize qs)
+    {
+        Ptr<QueueBase> qb = DynamicCast<QueueBase>(m_queue);
+        qb->SetMaxSize(qs);
+    }
 
     /**
      * Get a copy of the attached Queue.

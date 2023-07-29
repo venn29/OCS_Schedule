@@ -76,7 +76,8 @@ DropTailQueue<Item>::GetTypeId()
             .template AddConstructor<DropTailQueue<Item>>()
             .AddAttribute("MaxSize",
                           "The max queue size",
-                          QueueSizeValue(QueueSize("100p")),
+//                          QueueSizeValue(QueueSize("100p")),
+                          QueueSizeValue(QueueSize("150000B")),
                           MakeQueueSizeAccessor(&QueueBase::SetMaxSize, &QueueBase::GetMaxSize),
                           MakeQueueSizeChecker());
     return tid;
