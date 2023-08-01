@@ -41,7 +41,7 @@ static void EpsRouteHelper(NodeContainer TORs,uint32_t queuenumber){
             return;
         }
         Ptr<Ipv4EpsRouting> epsRouting = new Ipv4EpsRouting(queuenumber,50,0.99,0.9);
-        epsRouting->SetBypassStrategy(Ipv4EpsRouting::cwndbased);
+        epsRouting->SetBypassStrategy(Ipv4EpsRouting::nobypass);
         epsRouting->SetSSthresh(4);
         listrouting->AddRoutingProtocol(epsRouting,10);
     }
@@ -448,9 +448,9 @@ int main(int argc,char* argv[])
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 
     //OCS helpers
-    uint32_t  queuenumber = 4;
+    uint32_t  queuenumber = 7;
     Ptr<Node> ocsnode = OCS.Get(0);
-    QueueSize queueSize =  QueueSize("800kB");
+    QueueSize queueSize =  QueueSize("250kB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
     OCSLinks.SetDeviceAttribute("DataRate", StringValue("80Gbps"));
     OCSLinks.SetChannelAttribute("Delay", StringValue("8us"));
@@ -507,7 +507,7 @@ int main(int argc,char* argv[])
 //    ApplicationContainer receiveapp0 = receiver0.Install(Hosts0.Get(0));
 //    receiveapp0.Start(Seconds(0));
 //    receiveapp0.Stop(Seconds(10));
-    Cluster2ClusterAppHelper(Hosts0,Hosts2,TorIface0,1,10001,1024*1024);
+    Cluster2ClusterAppHelper(Hosts0,Hosts2,TorIface0,3,10001,1024*1024);
 
 
     AsciiTraceHelper ascii;
@@ -518,12 +518,12 @@ int main(int argc,char* argv[])
     HoLinks.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 //    OCSLinks.EnableAscii(ascii.CreateFileStream("TOR.tr"),TORs);
 //    OCSLinks.EnableAscii(ascii.CreateFileStream("Agg.tr"),Aggs);
-    HoLinks.EnablePcap("ocs",OCS);
+//    HoLinks.EnablePcap("ocs",OCS);
 //    HoLinks.EnablePcap("core",Cores, false);
     HoLinks.EnablePcap("tor",TORs, false);
-    HoLinks.EnablePcap("agg",Aggs, false);
+//    HoLinks.EnablePcap("agg",Aggs, false);
     HoLinks.EnablePcap("HO2",Hosts2, false);
-    HoLinks.EnablePcap("HO0",Hosts0, false);
+//    HoLinks.EnablePcap("HO0",Hosts0, false);
 
     LogComponentEnable("TcpCongestionOps",LOG_LEVEL_INFO);
 //

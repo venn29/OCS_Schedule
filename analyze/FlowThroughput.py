@@ -66,7 +66,7 @@ CsvPath = "./Tscsv"
 
 #unit: Ns
 interval = 1600000  
-totaltime = 1000000000
+totaltime = 10000000000
 time_unit_num = int(totaltime/interval)+1
 flows = {}
 for root,ds,fs in os.walk(CsvPath):

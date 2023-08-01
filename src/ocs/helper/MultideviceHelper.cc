@@ -23,7 +23,7 @@ NS_LOG_COMPONENT_DEFINE("MultideviceHelper");
 
 MultiDeviceHelper::MultiDeviceHelper()
 {
-    QueueSize qs(QueueSizeUnit::BYTES, 18750);
+    QueueSize qs(QueueSizeUnit::BYTES, 2000);
     m_MultideviceFactory.SetTypeId("ns3::MultiChannelPointToPointDevice");
     m_P2PdeviceFactory.SetTypeId("ns3::PointToPointNetDevice");
     m_channelFactory.SetTypeId("ns3::PointToPointChannel");
