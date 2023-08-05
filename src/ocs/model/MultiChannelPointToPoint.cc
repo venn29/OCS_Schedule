@@ -171,6 +171,8 @@ MultiChannelPointToPointDevice::RecordQueueBuffer(std::ofstream* ostream)
 uint16_t
 MultiChannelPointToPointDevice::GetTargetQueue(Ptr<Packet> p)
 {
+    if(this->queue_number <= 1)
+        return 0;
     OcsTag metadata;
     bool found = p->PeekPacketTag(metadata);
     if(!found){

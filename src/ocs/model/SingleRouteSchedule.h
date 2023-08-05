@@ -1,30 +1,23 @@
 //
-// Created by schedule on 5/25/23.
-//for a circulate scheduler,we simply circulating between such routing policies:
-//    1, 1-2,2-3,3-4......n-1-n,n~1 interval is 1
-//    2, 1-3,2-4,3-5......n~2 interval is 2
-//    ...
-//    n-1,  1~n, 2~1,3~2....... interval is n-1
-//    every set conclude n policies and there are totally n-1 sets
+// Created by venn on 23-8-2.
 //
 
-#ifndef NS3_ROUTE_SCHEDULE_H
-#define NS3_ROUTE_SCHEDULE_H
-
+#ifndef NS3_SINGLEROUTESCHEDULE_H
+#define NS3_SINGLEROUTESCHEDULE_H
 
 #include "ns3/ipv4-l3-protocol.h"
 #include "ns3/node.h"
 #include "ns3/net-device.h"
+#include "ns3/point-to-point-net-device.h"
 #include "ns3/nstime.h"
 #include "ipv4-ocs-routing.h"
 #include "MultiChannelPointToPoint.h"
-#include "Ipv4EpsRouting.h"
+#include "Ipv4SingleEPSRouting.h"
 
 
 namespace ns3
 {
-
-class RouteSchedule : public Object
+class SingleRouteSchedule : public Object
 {
   private:
     /* data */
@@ -47,7 +40,7 @@ class RouteSchedule : public Object
     //devices to OCS
     std::map<unsigned int,Ptr<MultiChannelPointToPointDevice>> devices_map;
     //routing to OCS
-    std::map<unsigned int,Ptr<Ipv4EpsRouting>> eps_routing_map;
+    std::map<unsigned int,Ptr<Ipv4SingleEPSRouting>> eps_routing_map;
     //map this device to remote addr
     std::map<unsigned int,Ipv4InterfaceAddress>  addr_map;
     //map to the interface to the ocs node at each TOR
@@ -55,7 +48,7 @@ class RouteSchedule : public Object
 
     Time finishtime;
 
-//    Ptr<BufferRecorder> br;
+    //    Ptr<BufferRecorder> br;
     //
     std::ofstream* bufferoutfilestream;
 
@@ -63,9 +56,9 @@ class RouteSchedule : public Object
 
   public:
     static TypeId GetTypeId();
-    RouteSchedule();
-    RouteSchedule(Time time_inter,Time time_config, Time start_time,uint32_t queuenumber,Ptr<Node> Ocs,Ptr<Ipv4OcsRouting> routing,Time finishtime);
-    ~RouteSchedule() override;
+    SingleRouteSchedule();
+    SingleRouteSchedule(Time time_inter,Time time_config, Time start_time,uint32_t queuenumber,Ptr<Node> Ocs,Ptr<Ipv4OcsRouting> routing,Time finishtime);
+    ~SingleRouteSchedule() override;
 
     //may be changed
     const uint32_t EPSIndex = 0;
@@ -95,12 +88,6 @@ class RouteSchedule : public Object
     }
 
 
-//    void SetBufferRecorder(Ptr<BufferRecorder> pbr ){this->br = pbr;}
 };
-
-
 }
-
-
-
-#endif // NS3_ROUTE_SCHEDULE_H
+#endif // NS3_SINGLEROUTESCHEDULE_H

@@ -19,6 +19,8 @@ build_lib(
                  model/OcsUtils.cc
                  model/new-bulk-send-application.cc
                  model/PFifoFlowSizeQueueDisc.cc
+                 model/Ipv4SingleEPSRouting.cc
+                 model/SingleRouteSchedule.cc
 #                 model/BufferRecorder.cc
                  helper/ocs-helper.cc
                  helper/MultideviceHelper.cc
@@ -30,6 +32,8 @@ build_lib(
                  model/OcsUtils.h
                  model/new-bulk-send-application.h
                  model/PFifoFlowSizeQueueDisc.h
+                 model/Ipv4SingleEPSRouting.h
+                 model/SingleRouteSchedule.h
 #                 model/BufferRecorder.h
                  helper/ocs-helper.h
                  helper/MultideviceHelper.h
