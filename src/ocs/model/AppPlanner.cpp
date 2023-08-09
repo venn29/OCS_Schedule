@@ -21,7 +21,7 @@ AppPlanner::AppPlanner()
       bigportstart(10001),
       hostpertor(16),
       endtime(Seconds(1)),
-      lambdaFlowPerSecond(10)
+      lambdaFlowPerSecond(10000)
 {
     NS_LOG_FUNCTION(this);
     this->fsd = new FlowSizeDistribution();

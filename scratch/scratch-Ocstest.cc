@@ -499,7 +499,7 @@ int main(int argc,char* argv[])
     //    ApplicationContainer receiveapp0 = receiver0.Install(Hosts0.Get(0));
     //    receiveapp0.Start(Seconds(0));
     //    receiveapp0.Stop(Seconds(10));
-    Cluster2ClusterAppHelper(Hosts0,Hosts2,TorIface0,1,10001,1024*1024);
+    Cluster2ClusterAppHelper(Hosts0,Hosts2,TorIface0,1,10001,102400*1024);
     Ptr<AppPlanner> apl = new AppPlanner();
     apl->AddClientSet(Hosts2);
     apl->AddServerSet(Hosts0);
@@ -507,19 +507,19 @@ int main(int argc,char* argv[])
 
 
     AsciiTraceHelper ascii;
-    HoLinks.EnableAscii(ascii.CreateFileStream("host.tr"),Hosts0);
-    HoLinks.EnableAscii(ascii.CreateFileStream("host1.tr"),Hosts1);
-    HoLinks.EnableAscii(ascii.CreateFileStream("sw.tr"),Cores);
-    HoLinks.EnableAscii(ascii.CreateFileStream("agg.tr"),Aggs);
-    HoLinks.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
-    //    OCSLinks.EnableAscii(ascii.CreateFileStream("TOR.tr"),TORs);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("host.tr"),Hosts0);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("host1.tr"),Hosts1);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("sw.tr"),Cores);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("agg.tr"),Aggs);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
+        OCSLinks.EnableAscii(ascii.CreateFileStream("TOR.tr"),TORs);
     //    OCSLinks.EnableAscii(ascii.CreateFileStream("Agg.tr"),Aggs);
-        HoLinks.EnablePcap("ocs",OCS);
-        HoLinks.EnablePcap("core",Cores, false);
+//        HoLinks.EnablePcap("ocs",OCS);
+//        HoLinks.EnablePcap("core",Cores, false);
     HoLinks.EnablePcap("tor",TORs, false);
-        HoLinks.EnablePcap("agg",Aggs, false);
-    HoLinks.EnablePcap("HO2",Hosts2, false);
-        HoLinks.EnablePcap("HO0",Hosts0, false);
+//        HoLinks.EnablePcap("agg",Aggs, false);
+//    HoLinks.EnablePcap("HO2",Hosts2, false);
+//        HoLinks.EnablePcap("HO0",Hosts0, false);
 
     LogComponentEnable("TcpCongestionOps",LOG_LEVEL_INFO);
     //

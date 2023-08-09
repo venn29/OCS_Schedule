@@ -35,6 +35,8 @@ PFifoFlowSizeQueueDisc::GetTypeId()
 PFifoFlowSizeQueueDisc::PFifoFlowSizeQueueDisc()
     : QueueDisc(QueueDiscSizePolicy::MULTIPLE_QUEUES, QueueSizeUnit::BYTES)
 {
+    QueueDisc::SetMaxSize(QueueSize("150000B"));
+    this->flowsizethresh = 50*1500;
     NS_LOG_FUNCTION(this);
 }
 
