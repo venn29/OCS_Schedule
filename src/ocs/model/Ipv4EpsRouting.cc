@@ -23,6 +23,7 @@
 #include "ns3/queue-disc.h"
 #include "ns3/queue.h"
 
+
 #include <iomanip>
 #include <algorithm>
 #include <utility>
@@ -69,7 +70,7 @@ Ipv4EpsRouting::Ipv4EpsRouting()
       ocs_dest_addr(std::vector<Ipv4Address>()),
       queue_number(2),
       working_queue_index(0),
-      mice_thresh(50),
+      mice_thresh(10*1500),
       queue_space_thresh(0.5),
       enqueued_flows(std::vector<std::map<size_t,Ptr<Flow>>> (2)),
       atnight(false),

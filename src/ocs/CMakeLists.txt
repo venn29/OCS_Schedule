@@ -21,6 +21,8 @@ build_lib(
                  model/PFifoFlowSizeQueueDisc.cc
                  model/Ipv4SingleEPSRouting.cc
                  model/SingleRouteSchedule.cc
+                 model/FlowSizeDistribution.cpp
+                 model/AppPlanner.cpp
 #                 model/BufferRecorder.cc
                  helper/ocs-helper.cc
                  helper/MultideviceHelper.cc
@@ -34,6 +36,8 @@ build_lib(
                  model/PFifoFlowSizeQueueDisc.h
                  model/Ipv4SingleEPSRouting.h
                  model/SingleRouteSchedule.h
+                 model/FlowSizeDistribution.h
+                 model/AppPlanner.h
 #                 model/BufferRecorder.h
                  helper/ocs-helper.h
                  helper/MultideviceHelper.h
