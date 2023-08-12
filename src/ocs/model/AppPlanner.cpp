@@ -149,6 +149,8 @@ AppPlanner::LongFlowPlan(NodeContainer servernd, NodeContainer clientnd,int flow
             receiveappc.Start(starttime);
             ++flowcreated;
             ++port;
+            if(flowcreated >= flownum)
+                break;
         }
     }
 }

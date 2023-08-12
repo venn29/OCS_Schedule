@@ -41,10 +41,10 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
 
-    FatTreeHelper* ft = new FatTreeHelper(4);
+    FatTreeHelper* ft = new FatTreeHelper(10);
     ft->Create();
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(2),ft->GetNodeInEdge(0),2,10001,1024*1024, Seconds(0.000001));
+    apl->LongFlowPlan(ft->GetNodeInEdge(5),ft->GetNodeInEdge(0),2,10001,1024*1024, Seconds(0.000001));
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("host",ft->GetNodeInEdge(0));
