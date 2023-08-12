@@ -49,6 +49,7 @@ FatTreeHelper::SetSWnum()
     aggrswnum = agginpodnum * podnum;
     edgeswnum = edgeinpodnum * podnum;
     nodenum = nodeinpodnum * podnum;
+
 }
 
 void
@@ -120,12 +121,14 @@ FatTreeHelper::Create()
 
                 nc = NodeContainer(this->aggrsw.Get(aggrn),this->edgesw.Get(edgen));
                 ndc = p2p.Install(nc);
+                this->aggtordevs.push_back(&ndc);
                 //allocate addr
-                //to-do :
                 std::stringstream  addrbase;
                 addrbase << AGGREDGE(pod,aggr,edge);
                 address.SetBase(addrbase.str().c_str(),"255.255.255.0");
                 Ipv4InterfaceContainer rootIface = address.Assign(ndc);
+
+                this->SetPfifoSizeQueueDisc(ndc.Get(1),nc.Get(1)->GetObject<TrafficControlLayer>());
             }
         }
     }
@@ -160,8 +163,12 @@ FatTreeHelper::Create()
         }
     }
 
+
+
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 }
+
+
 
 Ptr<Node>
 FatTreeHelper::GetRoot(int index)

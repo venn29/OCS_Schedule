@@ -40,6 +40,8 @@ class FatTreeHelper
 
     NodeContainer GetNodeInEdge(int edgeindex);
 
+    void SetPrioQueueDisc();
+
 
   private:
     void SetSWnum();
@@ -58,6 +60,21 @@ class FatTreeHelper
     NodeContainer aggrsw;
     NodeContainer edgesw;
     std::vector<NodeContainer*> nodes;
+
+    //device container
+    std::vector<NetDeviceContainer*> rootaggdevs;
+    std::vector<NetDeviceContainer*> aggtordevs;
+    std::vector<NetDeviceContainer*> tornodedevs;
+
+    void SetPfifoSizeQueueDisc(Ptr<NetDevice> dv,Ptr<TrafficControlLayer> tc)
+    {
+        Ptr<PointToPointNetDevice> p2pdv = DynamicCast<PointToPointNetDevice>(dv);
+        p2pdv->SetQueueSize(QueueSize("3100B"));
+        tc->DeleteRootQueueDiscOnDevice(dv);
+        TrafficControlHelper tcHelper;
+        tcHelper.SetRootQueueDisc("ns3::PFifoFlowSizeQueueDisc");
+        tcHelper.Install(dv);
+    }
 
 
 };
