@@ -1,5 +1,5 @@
 //
-// Created by venn on 23-8-11.
+// Created by venn on 23-8-12.
 //
 #include "ns3/core-module.h"
 #include "ns3/applications-module.h"
@@ -24,6 +24,7 @@
 #include <fstream>
 
 
+
 using namespace ns3;
 NS_LOG_COMPONENT_DEFINE("ScratchFattreeTest");
 
@@ -41,16 +42,25 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
 
-    FatTreeHelper* ft = new FatTreeHelper(4);
+    FatTreeHelper* ft = new FatTreeHelper(10);
     ft->Create();
+    uint32_t  queuenumber = 1;
+    NodeContainer OCS;
+    OCS.Create(1);
+    Ptr<Node> ocsnode = OCS.Get(0);
+    QueueSize queueSize =  QueueSize("1000kB");
+    MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
+    ft->SetOcsSingle(OCSLinks,ocsnode);
+
+
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(2),ft->GetNodeInEdge(0),2,10001,1024*1024, Seconds(0.000001));
+    apl->LongFlowPlan(ft->GetNodeInEdge(18),ft->GetNodeInEdge(3),2,10001,10240*1024, Seconds(0.000001));
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
-    p2ph.EnablePcap("host",ft->GetNodeInEdge(0));
-    Simulator::Stop(Seconds(10));
+    p2ph.EnablePcap("host",ft->GetNodeInEdge(3));
+    p2ph.EnablePcap("ocs",OCS);
+    Simulator::Stop(Seconds(1));
     Simulator::Run();
     Simulator::Destroy();
     return 0;
-
 }

@@ -20,6 +20,8 @@
 #define EDGENODE(pod, edge, node)		\
   pod + 201 << "." << edge + 1 << "." << node + 1 << ".0"
 
+#define OCSEDGE(pod,edge) \
+    pod + 201<<"."<<edge+1<<".0.0"
 
 using namespace ns3;
 
@@ -165,9 +167,66 @@ FatTreeHelper::Create()
 
 
 
+
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 }
 
+
+void
+FatTreeHelper::SetOcsSingle(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw )
+{
+    InternetStackHelper stack;
+    Ipv4AddressHelper address;
+    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("80Gbps"));
+    OCSLinkhelper.SetChannelAttribute("Delay", StringValue("8us"));
+    OCSLinkhelper.SetMultiDeviceRate("80Gbps");
+    OCSLinkhelper.SetEnableFlowControl(false);
+    for(int edgen=0;edgen<this->edgeswnum;edgen++)
+    {
+        NetDeviceContainer ndc = OCSLinkhelper.Install(this->GetEdge(edgen));
+        this->torocsdevs.push_back(ndc);
+    }
+    //to install loopback device at last
+    stack.Install(ocssw);
+    for(int pod=0;pod<this->podnum;pod++)
+    {
+        for(int edge=0;edge<this->edgeinpodnum;edge++)
+        {
+            int edgen = pod*this->edgeinpodnum+edge;
+            NetDeviceContainer ndc = this->torocsdevs[edgen];
+            std::stringstream  addrbase;
+            addrbase << OCSEDGE(pod,edge);
+            address.SetBase(addrbase.str().c_str(),"255.255.0.0");
+            Ipv4InterfaceContainer rootIface = address.Assign(ndc);
+        }
+    }
+    //ocs routing
+    Ptr<Ipv4OcsRouting> OcsRoutingP = new Ipv4OcsRouting();
+    Ptr<SingleRouteSchedule> RouteScheduler = new SingleRouteSchedule(MicroSeconds(180), MicroSeconds(20),MicroSeconds(0),OCSLinkhelper.GetQueueNumber(),ocssw,OcsRoutingP, Seconds(10));
+    RouteScheduler->SetBufferOutFile("./BufferRecord.txt");
+    Ptr<Ipv4L3Protocol> OcsIpv4 = ocssw->GetObject<Ipv4L3Protocol>();
+    OcsIpv4->SetRoutingProtocol(OcsRoutingP);
+    //eps routing
+    EPSRouteInstall(this->edgesw,OCSLinkhelper.GetQueueNumber());
+    RouteScheduler->Initialize();
+}
+
+void
+FatTreeHelper::EPSRouteInstall(ns3::NodeContainer TORs, uint32_t queuenumber)
+{
+    for(uint32_t i = 0;i<TORs.GetN();i++){
+        Ptr<Node> tori = TORs.Get(i);
+        Ptr<Ipv4L3Protocol> epsIpv4 = tori->GetObject<Ipv4L3Protocol>();
+        Ptr<Ipv4RoutingProtocol> totalrouting = epsIpv4->GetRoutingProtocol();
+        Ptr<Ipv4ListRouting> listrouting = DynamicCast<Ipv4ListRouting>(totalrouting);
+        if(!listrouting){
+            //            std::cout<<"error not listrouting, insert failed";
+            return;
+        }
+        Ptr<Ipv4SingleEPSRouting> SepsRouting = new Ipv4SingleEPSRouting();
+        listrouting->AddRoutingProtocol(SepsRouting,10);
+    }
+}
 
 
 Ptr<Node>
@@ -192,7 +251,7 @@ FatTreeHelper::GetAggr(int pod, int indexpod)
 Ptr<Node>
 FatTreeHelper::GetEdge(int index)
 {
-    return this->rootsw.Get(index);
+    return this->edgesw.Get(index);
 }
 
 

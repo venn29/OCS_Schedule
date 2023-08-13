@@ -29,7 +29,7 @@ SingleRouteSchedule::SingleRouteSchedule()
       WaitingQueueSize(1),
       OCS(nullptr),
       ocsrouting(nullptr),
-      finishtime(Seconds(10))
+      finishtime(Seconds(1))
 {
     NS_LOG_FUNCTION(this);
 }

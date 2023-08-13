@@ -52,6 +52,7 @@ class MultiDeviceHelper : public PcapHelperForDevice, public AsciiTraceHelperFor
     }
 
     Ptr<Node> GetOcsNode();
+    uint32_t  GetQueueNumber(){return  this->queue_number;}
   private:
     void EnablePcapInternal(std::string prefix,
                            Ptr<NetDevice> nd,

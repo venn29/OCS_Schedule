@@ -44,12 +44,22 @@ int main(int argc,char* argv[])
 
     FatTreeHelper* ft = new FatTreeHelper(10);
     ft->Create();
+    uint32_t  queuenumber = 1;
+    NodeContainer OCS;
+    OCS.Create(1);
+    Ptr<Node> ocsnode = OCS.Get(0);
+    QueueSize queueSize =  QueueSize("1000kB");
+    MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
+    ft->SetOcsSingle(OCSLinks,ocsnode);
+
+
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(18),ft->GetNodeInEdge(3),2,10001,1024*1024, Seconds(0.000001));
+    apl->LongFlowPlan(ft->GetNodeInEdge(18),ft->GetNodeInEdge(3),2,10001,10240*1024, Seconds(0.000001));
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("host",ft->GetNodeInEdge(3));
-    Simulator::Stop(Seconds(10));
+    p2ph.EnablePcap("ocs",OCS);
+    Simulator::Stop(Seconds(1));
     Simulator::Run();
     Simulator::Destroy();
     return 0;

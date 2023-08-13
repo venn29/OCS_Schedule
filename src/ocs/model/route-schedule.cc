@@ -63,7 +63,7 @@ RouteSchedule::Initialize()
     this->set_numbers = ocs_policy_numbers-1;
     auto ocs_ipv4l3 = this->OCS->GetObject<Ipv4L3Protocol>();
     //static routing policies
-    for(uint32_t i=0;i<this->ocs_policy_numbers;i++)
+    for(uint32_t i=0;i<this->OCS->GetNDevices();i++)
     {
         Ptr<NetDevice> dv = this->OCS->GetDevice(i);
         auto channel = dv->GetChannel();

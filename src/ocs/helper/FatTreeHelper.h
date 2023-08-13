@@ -15,6 +15,9 @@
 #include "ns3/traffic-control-layer.h"
 #include "ns3/traffic-control-helper.h"
 #include "ns3/queue-size.h"
+#include "ns3/MultideviceHelper.h"
+#include "ns3/ocs-helper.h"
+#include "ns3/SingleRouteSchedule.h"
 namespace ns3
 {
 class FatTreeHelper
@@ -42,6 +45,8 @@ class FatTreeHelper
 
     void SetPrioQueueDisc();
 
+    void SetOcsSingle(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw);
+
 
   private:
     void SetSWnum();
@@ -65,8 +70,9 @@ class FatTreeHelper
     std::vector<NetDeviceContainer*> rootaggdevs;
     std::vector<NetDeviceContainer*> aggtordevs;
     std::vector<NetDeviceContainer*> tornodedevs;
+    std::vector<NetDeviceContainer> torocsdevs;
 
-    void SetPfifoSizeQueueDisc(Ptr<NetDevice> dv,Ptr<TrafficControlLayer> tc)
+        void SetPfifoSizeQueueDisc(Ptr<NetDevice> dv,Ptr<TrafficControlLayer> tc)
     {
         Ptr<PointToPointNetDevice> p2pdv = DynamicCast<PointToPointNetDevice>(dv);
         p2pdv->SetQueueSize(QueueSize("3100B"));
@@ -76,6 +82,7 @@ class FatTreeHelper
         tcHelper.Install(dv);
     }
 
+    void EPSRouteInstall(NodeContainer TORs, uint32_t queuenumber);
 
 };
 }
