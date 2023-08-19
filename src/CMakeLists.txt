@@ -72,7 +72,8 @@ if(${NS3_MONOLIB})
   add_library(
     ${lib-ns3-monolib} SHARED ${PROJECT_SOURCE_DIR}/build-support/empty.cc
                               "${lib-ns3-static-objs}"
-          ../scratch/scratch-packetonly.cc)
+          ../scratch/scratch-packetonly.cc
+          ../scratch/scratch-FTwarmup.cc)
   set_target_properties(
     ${lib-ns3-monolib}
     PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE

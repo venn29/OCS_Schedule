@@ -18,6 +18,9 @@
 #include "ns3/MultideviceHelper.h"
 #include "ns3/ocs-helper.h"
 #include "ns3/SingleRouteSchedule.h"
+#include "ns3/route-schedule.h"
+#include "ns3/Ipv4EpsRouting.h"
+#include "ns3/Ipv4SingleEPSRouting.h"
 namespace ns3
 {
 class FatTreeHelper
@@ -42,11 +45,13 @@ class FatTreeHelper
     Ptr<Node> GetNode(int pod,int edgeinpod,int indexpod);
 
     NodeContainer GetNodeInEdge(int edgeindex);
+    NodeContainer GetAllEdges(){return this->edgesw;}
 
     void SetPrioQueueDisc();
 
     void SetOcsSingle(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw);
 
+    void SetOcsMulti(MultiDeviceHelper OCSLinkhelper, Ptr<Node> ocssw);
 
   private:
     void SetSWnum();
@@ -81,6 +86,8 @@ class FatTreeHelper
         tcHelper.SetRootQueueDisc("ns3::PFifoFlowSizeQueueDisc");
         tcHelper.Install(dv);
     }
+
+    void EPSRouteInstallSingle(NodeContainer TORs, uint32_t queuenumber);
 
     void EPSRouteInstall(NodeContainer TORs, uint32_t queuenumber);
 
