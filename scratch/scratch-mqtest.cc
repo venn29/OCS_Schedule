@@ -41,7 +41,7 @@ static void EpsRouteHelper(NodeContainer TORs,uint32_t queuenumber){
             return;
         }
         Ptr<Ipv4EpsRouting> epsRouting = new Ipv4EpsRouting(queuenumber,50,0.99,0.9);
-        epsRouting->SetBypassStrategy(Ipv4EpsRouting::nobypass);
+        epsRouting->SetBypassStrategy(Ipv4EpsRouting::cwndbased);
         epsRouting->SetSSthresh(4);
         listrouting->AddRoutingProtocol(epsRouting,10);
     }
@@ -93,12 +93,14 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1446));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(650)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(900)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
+    Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
+
     //    Time::SetResolution(Time::NS);
     //      nodes
 
@@ -448,7 +450,7 @@ int main(int argc,char* argv[])
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 
     //OCS helpers
-    uint32_t  queuenumber = 7;
+    uint32_t  queuenumber = 4;
     Ptr<Node> ocsnode = OCS.Get(0);
     QueueSize queueSize =  QueueSize("250kB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
@@ -507,23 +509,23 @@ int main(int argc,char* argv[])
 //    ApplicationContainer receiveapp0 = receiver0.Install(Hosts0.Get(0));
 //    receiveapp0.Start(Seconds(0));
 //    receiveapp0.Stop(Seconds(10));
-    Cluster2ClusterAppHelper(Hosts0,Hosts2,TorIface0,3,10001,1024*1024);
+    Cluster2ClusterAppHelper(Hosts2,Hosts0,TorIface2,1,10001,10240*1024);
 
 
     AsciiTraceHelper ascii;
-    HoLinks.EnableAscii(ascii.CreateFileStream("host.tr"),Hosts0);
-    HoLinks.EnableAscii(ascii.CreateFileStream("host1.tr"),Hosts1);
-    HoLinks.EnableAscii(ascii.CreateFileStream("sw.tr"),Cores);
-    HoLinks.EnableAscii(ascii.CreateFileStream("agg.tr"),Aggs);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("host.tr"),Hosts0);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("host1.tr"),Hosts1);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("sw.tr"),Cores);
+//    HoLinks.EnableAscii(ascii.CreateFileStream("agg.tr"),Aggs);
     HoLinks.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 //    OCSLinks.EnableAscii(ascii.CreateFileStream("TOR.tr"),TORs);
 //    OCSLinks.EnableAscii(ascii.CreateFileStream("Agg.tr"),Aggs);
 //    HoLinks.EnablePcap("ocs",OCS);
 //    HoLinks.EnablePcap("core",Cores, false);
-    HoLinks.EnablePcap("tor",TORs, false);
+//    HoLinks.EnablePcap("tor",TORs, false);
 //    HoLinks.EnablePcap("agg",Aggs, false);
-    HoLinks.EnablePcap("HO2",Hosts2, false);
-//    HoLinks.EnablePcap("HO0",Hosts0, false);
+//    HoLinks.EnablePcap("HO2",Hosts2, false);
+    HoLinks.EnablePcap("HO0",Hosts0, false);
 
     LogComponentEnable("TcpCongestionOps",LOG_LEVEL_INFO);
 //

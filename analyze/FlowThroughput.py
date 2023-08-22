@@ -65,7 +65,7 @@ CsvPath = "./Tscsv"
 # not have been implemented now 
 
 #unit: Ns
-interval = 1600000  
+interval = 1400000  
 totaltime = 10000000000
 time_unit_num = int(totaltime/interval)+1
 flows = {}

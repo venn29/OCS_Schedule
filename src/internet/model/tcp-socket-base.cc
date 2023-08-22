@@ -2779,6 +2779,7 @@ TcpSocketBase::SendEmptyPacket(uint8_t flags)
     m_rto =
         Max(m_rtt->GetEstimate() + Max(m_clockGranularity, m_rtt->GetVariation() * 4), m_minRto);
 
+
     uint16_t windowSize = AdvertisedWindowSize();
     bool hasSyn = flags & TcpHeader::SYN;
     bool hasFin = flags & TcpHeader::FIN;
@@ -2863,6 +2864,7 @@ TcpSocketBase::SendEmptyPacket(uint8_t flags)
         NS_LOG_LOGIC("Schedule retransmission timeout at time "
                      << Simulator::Now().GetSeconds() << " to expire at time "
                      << (Simulator::Now() + m_rto.Get()).GetSeconds());
+
         m_retxEvent = Simulator::Schedule(m_rto, &TcpSocketBase::SendEmptyPacket, this, flags);
     }
 }
@@ -3695,6 +3697,8 @@ TcpSocketBase::NewAck(const SequenceNumber32& ack, bool resetRTO)
         // RFC 6298, clause 2.4
         m_rto = Max(m_rtt->GetEstimate() + Max(m_clockGranularity, m_rtt->GetVariation() * 4),
                     m_minRto);
+
+//        std::cout<<"Time,"<<Simulator::Now().GetSeconds()<<","<<m_rto<<","<<m_rtt->GetEstimate()<<","<<m_rtt->GetVariation()<<","<<m_clockGranularity<<","<<m_minRto<<std::endl;
 
         NS_LOG_LOGIC(this << " Schedule ReTxTimeout at time " << Simulator::Now().GetSeconds()
                           << " to expire at time "

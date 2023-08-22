@@ -233,6 +233,7 @@ RttMeanDeviation::IntegerUpdate(Time m, uint32_t rttShift, uint32_t variationShi
     int64_t rttvar = m_estimatedVariation.GetInteger() << variationShift;
     rttvar += delta;
     m_estimatedVariation = Time::From(rttvar >> variationShift);
+//    std::cout<<meas<<","<<m_estimatedRtt.GetInteger()<<","<<m_estimatedVariation<<","<<delta<<","<<srtt<<std::endl;
 }
 
 void

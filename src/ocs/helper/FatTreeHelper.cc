@@ -43,7 +43,7 @@ FatTreeHelper::SetSWnum()
     this->podnum2 = this->podnum/2;
     agginpodnum = podnum2;
     edgeinpodnum = podnum2;
-    nodeinedgenum = podnum2; //temporary
+    nodeinedgenum = 60; //temporary
 
     nodeinpodnum = nodeinedgenum * edgeinpodnum;
 
@@ -119,18 +119,18 @@ FatTreeHelper::Create()
                 PointToPointHelper p2p;
                 p2p.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
                 p2p.SetChannelAttribute ("Delay", StringValue ("4us"));
-
+                p2p.DisableFlowControl();
 
                 nc = NodeContainer(this->aggrsw.Get(aggrn),this->edgesw.Get(edgen));
                 ndc = p2p.Install(nc);
-                this->aggtordevs.push_back(&ndc);
+//                this->aggtordevs.push_back(&ndc);
                 //allocate addr
                 std::stringstream  addrbase;
                 addrbase << AGGREDGE(pod,aggr,edge);
                 address.SetBase(addrbase.str().c_str(),"255.255.255.0");
                 Ipv4InterfaceContainer rootIface = address.Assign(ndc);
 
-                this->SetPfifoSizeQueueDisc(ndc.Get(1),nc.Get(1)->GetObject<TrafficControlLayer>());
+//                this->SetPfifoSizeQueueDisc(ndc.Get(1),nc.Get(1)->GetObject<TrafficControlLayer>());
             }
         }
     }
@@ -164,9 +164,6 @@ FatTreeHelper::Create()
             }
         }
     }
-
-
-
 
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 }
@@ -279,7 +276,9 @@ FatTreeHelper::EPSRouteInstall(ns3::NodeContainer TORs, uint32_t queuenumber)
             //            std::cout<<"error not listrouting, insert failed";
             return;
         }
-        Ptr<Ipv4EpsRouting> SepsRouting = new Ipv4EpsRouting();
+        Ptr<Ipv4EpsRouting> SepsRouting = new Ipv4EpsRouting(queuenumber,50,0.0,0.0);
+        SepsRouting->SetBypassStrategy(Ipv4EpsRouting::cwndbased);
+        SepsRouting->SetSSthresh(4);
         listrouting->AddRoutingProtocol(SepsRouting,10);
     }
 }

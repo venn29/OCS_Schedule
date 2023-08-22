@@ -189,7 +189,8 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     else
         return false;
 
-    //we do not have any entry for the downlink acks
+//    std::cout<<dstport<<std::endl;
+    //we do not have any entryst for the downlink acks
     Ptr<Ipv4Route> rtentry = LookupEps(ipHeader.GetDestination());
     //down traffic
     if(!rtentry)
