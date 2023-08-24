@@ -1,4 +1,7 @@
 //
+// Created by schedule on 8/23/23.
+//
+//
 // Created by schedule on 8/18/23.
 //
 #include "ns3/core-module.h"
@@ -35,8 +38,8 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1446));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(9400)));
     Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(850)));
+//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(9400)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
@@ -44,18 +47,19 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
     Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
 
-//    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
+    //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
-//    FatTreeHelper* ft = new FatTreeHelper(10);
     FatTreeHelper* ft = new FatTreeHelper(4);
+//    FatTreeHelper* ft = new FatTreeHelper(10);
     ft->Create();
-    uint32_t  queuenumber = 4;
+    uint32_t  queuenumber = 7;
     NodeContainer OCS;
     OCS.Create(1);
     Ptr<Node> ocsnode = OCS.Get(0);
-    QueueSize queueSize =  QueueSize("400kB");
+    QueueSize queueSize =  QueueSize("250kB");
+//    QueueSize queueSize =  QueueSize("35kB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
-    ft->SetOcsMulti(OCSLinks,ocsnode,"warmup");
+    ft->SetOcsMulti(OCSLinks,ocsnode,"nobypass");
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
@@ -63,8 +67,8 @@ int main(int argc,char* argv[])
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
-//    p2ph.EnablePcap("tor",ft->GetAllEdges());
-//    p2ph.EnablePcap("ocs",OCS);
+    //    p2ph.EnablePcap("tor",ft->GetAllEdges());
+    //    p2ph.EnablePcap("ocs",OCS);
 
     p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 

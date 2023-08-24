@@ -43,7 +43,7 @@ FatTreeHelper::SetSWnum()
     this->podnum2 = this->podnum/2;
     agginpodnum = podnum2;
     edgeinpodnum = podnum2;
-    nodeinedgenum = 60; //temporary
+    nodeinedgenum = 64; //temporary
 
     nodeinpodnum = nodeinedgenum * edgeinpodnum;
 
@@ -174,9 +174,9 @@ FatTreeHelper::SetOcsSingle(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw )
 {
     InternetStackHelper stack;
     Ipv4AddressHelper address;
-    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("80Gbps"));
+    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("60Gbps"));
     OCSLinkhelper.SetChannelAttribute("Delay", StringValue("8us"));
-    OCSLinkhelper.SetMultiDeviceRate("80Gbps");
+    OCSLinkhelper.SetMultiDeviceRate("60Gbps");
     OCSLinkhelper.SetEnableFlowControl(false);
     for(int edgen=0;edgen<this->edgeswnum;edgen++)
     {
@@ -226,13 +226,13 @@ FatTreeHelper::EPSRouteInstallSingle(ns3::NodeContainer TORs, uint32_t queuenumb
 }
 
 void
-FatTreeHelper::SetOcsMulti(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw )
+FatTreeHelper::SetOcsMulti(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw,std::string routetype )
 {
     InternetStackHelper stack;
     Ipv4AddressHelper address;
-    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("80Gbps"));
+    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("60Gbps"));
     OCSLinkhelper.SetChannelAttribute("Delay", StringValue("8us"));
-    OCSLinkhelper.SetMultiDeviceRate("80Gbps");
+    OCSLinkhelper.SetMultiDeviceRate("60Gbps");
     OCSLinkhelper.SetEnableFlowControl(false);
     for(int edgen=0;edgen<this->edgeswnum;edgen++)
     {
@@ -260,12 +260,12 @@ FatTreeHelper::SetOcsMulti(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw )
     Ptr<Ipv4L3Protocol> OcsIpv4 = ocssw->GetObject<Ipv4L3Protocol>();
     OcsIpv4->SetRoutingProtocol(OcsRoutingP);
     //eps routing
-    EPSRouteInstall(this->edgesw,OCSLinkhelper.GetQueueNumber());
+    EPSRouteInstall(this->edgesw,OCSLinkhelper.GetQueueNumber(),routetype);
     RouteScheduler->Initialize();
 }
 
 void
-FatTreeHelper::EPSRouteInstall(ns3::NodeContainer TORs, uint32_t queuenumber)
+FatTreeHelper::EPSRouteInstall(ns3::NodeContainer TORs, uint32_t queuenumber,std::string routetype)
 {
     for(uint32_t i = 0;i<TORs.GetN();i++){
         Ptr<Node> tori = TORs.Get(i);
@@ -277,7 +277,14 @@ FatTreeHelper::EPSRouteInstall(ns3::NodeContainer TORs, uint32_t queuenumber)
             return;
         }
         Ptr<Ipv4EpsRouting> SepsRouting = new Ipv4EpsRouting(queuenumber,50,0.0,0.0);
-        SepsRouting->SetBypassStrategy(Ipv4EpsRouting::cwndbased);
+        if(routetype.compare("warmup") == 0)
+            SepsRouting->SetBypassStrategy(Ipv4EpsRouting::cwndbased);
+        else if (routetype.compare("nobypass") == 0)
+            SepsRouting->SetBypassStrategy(Ipv4EpsRouting::nobypass);
+        else if (routetype.compare("pktonly") == 0)
+            SepsRouting->SetBypassStrategy(Ipv4EpsRouting::pktonly);
+        else
+            SepsRouting->SetBypassStrategy(Ipv4EpsRouting::randomize);
         SepsRouting->SetSSthresh(4);
         listrouting->AddRoutingProtocol(SepsRouting,10);
     }

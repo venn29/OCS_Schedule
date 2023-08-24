@@ -51,7 +51,7 @@ class FatTreeHelper
 
     void SetOcsSingle(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw);
 
-    void SetOcsMulti(MultiDeviceHelper OCSLinkhelper, Ptr<Node> ocssw);
+    void SetOcsMulti(MultiDeviceHelper OCSLinkhelper, Ptr<Node> ocssw,std::string routetype);
 
   private:
     void SetSWnum();
@@ -65,6 +65,8 @@ class FatTreeHelper
     int aggrswnum;
     int edgeswnum;
     int nodenum;
+
+
 
     NodeContainer rootsw;
     NodeContainer aggrsw;
@@ -89,7 +91,7 @@ class FatTreeHelper
 
     void EPSRouteInstallSingle(NodeContainer TORs, uint32_t queuenumber);
 
-    void EPSRouteInstall(NodeContainer TORs, uint32_t queuenumber);
+    void EPSRouteInstall(NodeContainer TORs, uint32_t queuenumber,std::string routetype);
 
 };
 }

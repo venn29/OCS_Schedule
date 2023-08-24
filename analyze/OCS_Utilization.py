@@ -23,7 +23,7 @@ Devices = []
 for i in range(0,devicenum):
     Devices.append(DeviceUtil(i,time_units,daylen,daynightlen))
 pkt_lenth = 1500
-ocs_transfertime = 150
+ocs_transfertime = 200
 with open('../ocs.tr','r') as f:
     for line in f.readlines():
         datas = line.split()
@@ -35,7 +35,7 @@ with open('../ocs.tr','r') as f:
             infos = datas[2].split('/')
             deviceno = int(infos[4])
             device_temp = Devices[deviceno]
-            device_temp.worktimes[timeunit_no] += 150
+            device_temp.worktimes[timeunit_no] += 200
 for dev in Devices:
     dev.CalculateUtil()
 

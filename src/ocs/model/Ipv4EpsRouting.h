@@ -193,7 +193,7 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
 
     void AddDestAddr(Ipv4Address ip){this->ocs_dest_addr.emplace_back(ip);}
 
-    enum BypassStrategy{nobypass,randomize,cwndbased};
+    enum BypassStrategy{nobypass,randomize,cwndbased,pktonly};
 
     void SetBypassStrategy(BypassStrategy bs) {this->m_bypass = bs;}
 
