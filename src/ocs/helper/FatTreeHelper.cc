@@ -5,6 +5,7 @@
 #include "FatTreeHelper.h"
 #include "ns3/internet-stack-helper.h"
 #include "ns3/point-to-point-helper.h"
+#include "ns3/Prio2Device.h"
 
 /* Address Resolution Macros */
 
