@@ -30,7 +30,7 @@ FlowSizeDistribution::GenerateFlowsizeByte()
 {
 //    double outcome = this->sizerandom->GetValue(0,1);
     //test for plenty small flows
-    return 10*1460;
+    return 49*1000;
 }
 
 } // namespace ns3

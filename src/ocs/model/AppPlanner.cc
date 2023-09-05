@@ -16,12 +16,12 @@ NS_OBJECT_ENSURE_REGISTERED(AppPlanner);
 AppPlanner::AppPlanner()
     :randomselecthost(CreateObject<UniformRandomVariable>()),
       randompoisson(CreateObject<UniformRandomVariable>()),
-      flowthresh(10*1500),
+      flowthresh(1024*50),
       smallportstart(20001),
       bigportstart(10001),
       hostpertor(16),
       endtime(Seconds(1)),
-      lambdaFlowPerSecond(100)
+      lambdaFlowPerSecond(50000)
 {
     NS_LOG_FUNCTION(this);
     this->fsd = new FlowSizeDistribution();
@@ -93,7 +93,7 @@ AppPlanner::RegisterFlow(uint32_t flowsize,Time starttime)
     NewBulkSendHelper senderapph("ns3::TcpSocketFactory",InetSocketAddress(serveripv4,port));
     PacketSinkHelper receivapph("ns3::TcpSocketFactory",InetSocketAddress(Ipv4Address::GetAny(),port));
     senderapph.SetAttribute("MaxBytes", UintegerValue(flowsize));
-    senderapph.SetAttribute("SendSize", UintegerValue(uint32_t(1446)));
+    senderapph.SetAttribute("SendSize", UintegerValue(uint32_t(1458)));
     //APP Container
     ApplicationContainer sendappcontainer = senderapph.Install(client);
     sendappcontainer.Start(starttime);
@@ -116,8 +116,25 @@ AppPlanner::CreatePlanPoisson()
         uint32_t fsize = this->fsd->GenerateFlowsizeByte();
         this->RegisterFlow(fsize,timenow);
         ++x;
+        std::cout<<intervalure<<std::endl;
     }
-    std::cout<<"create "<<x<<" flows";
+    std::cout<<"create "<<x<<" flows"<<std::endl;
+}
+
+void
+AppPlanner::CreatePlanUniform(double flownum)
+{
+    Time intertime = this->endtime / flownum;
+    Time timenow = Seconds(0);
+    int x = 0;
+    while(timenow <= this->endtime)
+    {
+        uint32_t fsize = this->fsd->GenerateFlowsizeByte();
+        this->RegisterFlow(fsize,timenow);
+        timenow+=intertime;
+        x++;
+    }
+    std::cout<<"create "<<x<<" flows"<<std::endl;
 }
 
 void
@@ -141,7 +158,7 @@ AppPlanner::LongFlowPlan(NodeContainer servernd, NodeContainer clientnd,int flow
             NewBulkSendHelper senderapph("ns3::TcpSocketFactory",InetSocketAddress(serveripv4,port));
             PacketSinkHelper receivapph("ns3::TcpSocketFactory",InetSocketAddress(Ipv4Address::GetAny(),port));
             senderapph.SetAttribute("MaxBytes",UintegerValue(maxbytes));
-            senderapph.SetAttribute("SendSize", UintegerValue(uint32_t(1446)));
+            senderapph.SetAttribute("SendSize", UintegerValue(uint32_t(1458)));
             //app container
             ApplicationContainer sendappc = senderapph.Install(client);
             sendappc.Start(starttime);

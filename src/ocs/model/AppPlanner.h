@@ -28,7 +28,8 @@ class AppPlanner : public Object
      void RegisterFlow(uint32_t flowSize,Time starttime);
      void CreatePlanPoisson();
      void LongFlowPlan(NodeContainer servernd, NodeContainer clientnd,int flownum, uint16_t port_start,uint32_t maxbytes,Time starttime);
-  private:
+     void CreatePlanUniform(double flownum);
+   private:
     std::vector<NodeContainer> clients;
     std::vector<NodeContainer> servers;
     std::vector<unsigned int> sendercountindex;

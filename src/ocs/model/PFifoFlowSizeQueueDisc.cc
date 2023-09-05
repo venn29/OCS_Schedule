@@ -70,7 +70,10 @@ PFifoFlowSizeQueueDisc::DoEnqueue(Ptr<ns3::QueueDiscItem> item)
     {
         uint32_t  size = metaData.GetLeftSize();
         if(size > this->flowsizethresh)
+        {
             band = 1;
+            std::cout<<"enqueue band2"<<std::endl;
+        }
     }
     bool retval = GetInternalQueue(band)->Enqueue(item);
     if(!retval)

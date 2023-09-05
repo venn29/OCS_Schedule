@@ -29,6 +29,7 @@ build_lib(
                  helper/MultideviceHelper.cc
                  helper/new-bulk-send-helper.cc
                  helper/FatTreeHelper.cc
+                 helper/Prio2DeviceHelper.cc
     HEADER_FILES model/ipv4-ocs-routing.h
                  model/route-schedule.h
                  model/Ipv4EpsRouting.h
@@ -46,6 +47,7 @@ build_lib(
                  helper/MultideviceHelper.h
                  helper/new-bulk-send-helper.h
                  helper/FatTreeHelper.h
+                 helper/Prio2DeviceHelper.h
     LIBRARIES_TO_LINK 
                  ${libcore}
                  ${libinternet}

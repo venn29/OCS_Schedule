@@ -14,8 +14,8 @@ class DeviceUtil:
 
 
 totaltime = 10000000000   #this is 10 second,unit is ns
-daylen = 180000
-daynightlen = 200000
+daylen = 240000
+daynightlen = 260000
 time_units = int(totaltime/daynightlen)
 print(time_units)
 devicenum = 8

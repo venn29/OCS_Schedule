@@ -32,33 +32,42 @@ int main(int argc,char* argv[])
 {
     CommandLine cmd;
     cmd.Parse(argc,argv);
-    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1446));
+    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(650)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(12220)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
-    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
+//    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
+    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(false));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
-
+    Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
+    ns3::RngSeedManager::SetSeed(1530);
+    ns3::RngSeedManager::SetRun(7);
     FatTreeHelper* ft = new FatTreeHelper(10);
     ft->Create();
     uint32_t  queuenumber = 1;
     NodeContainer OCS;
     OCS.Create(1);
     Ptr<Node> ocsnode = OCS.Get(0);
-    QueueSize queueSize =  QueueSize("1000kB");
+    QueueSize queueSize =  QueueSize("1200KB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
     ft->SetOcsSingle(OCSLinks,ocsnode);
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(18),ft->GetNodeInEdge(3),2,10001,10240*1024, Seconds(0.000001));
+    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,10240*1024, Seconds(0.000520));
+    apl->AddClientSet(ft->GetNodeInEdge(0));
+    apl->AddServerSet(ft->GetNodeInEdge(6));
+    apl->CreatePlanUniform(10000);
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
-    p2ph.EnablePcap("host",ft->GetNodeInEdge(3));
+    p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
     p2ph.EnablePcap("ocs",OCS);
+
+    p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
+
     Simulator::Stop(Seconds(1));
     Simulator::Run();
     Simulator::Destroy();

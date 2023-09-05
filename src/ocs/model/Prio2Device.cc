@@ -33,7 +33,7 @@ Prio2Device::GetTypeId()
 }
 
 Prio2Device::Prio2Device()
-    :prio_queues(std::vector<Ptr<Queue<Packet>>> (2)),
+    :prio_queues(std::vector<Ptr<Queue<Packet>>> ()),
       queue_number(2)
 {
     NS_LOG_FUNCTION(this);
@@ -65,20 +65,33 @@ Prio2Device::Send(Ptr<ns3::Packet> packet, const ns3::Address& dest, uint16_t pr
     }
 
     uint16_t queue_tgt_idx = GetTargetQueue(packet);
+    if(queue_tgt_idx<0 || queue_tgt_idx>this->queue_number)
+        queue_tgt_idx = 0;
+//    std::cout<<queue_tgt_idx<<std::endl;
     Ptr<Queue<Packet>> queue_tgt = this->prio_queues[queue_tgt_idx];
     AddHeader(packet, protocolNumber);
     if(queue_tgt->Enqueue(packet))
     {
         if(PointToPointNetDevice::GetMachineState() == PointToPointNetDevice::READY)
         {
-            for(auto queue:prio_queues)
-            {
-                if(Ptr<Packet> p = queue->Dequeue())
+//            for(auto queue:prio_queues)
+//            {
+//                if(Ptr<Packet> p = queue->Dequeue())
+//                {
+//                    bool ret = TransmitStart((p));
+//                    return ret;
+//                }
+//            }
+            for(int i=0;i<2;i++ )
                 {
-                    bool ret = TransmitStart((p));
-                    return ret;
+                    auto queue = this->prio_queues[i];
+                    if(Ptr<Packet> p = queue->Dequeue())
+                    {
+//                        std::cout<<i<<" dequeue"<<std::endl;
+                     bool ret = TransmitStart((p));
+                     return ret;
+                  }
                 }
-            }
         }
         return true;
     }
@@ -113,14 +126,25 @@ Prio2Device::TransmitComplete()
     PointToPointNetDevice::SetMachineState(PointToPointNetDevice::READY);
     NS_ASSERT_MSG(PointToPointNetDevice::GetCurrentPacket(), "PointToPointNetDevice::TransmitComplete(): m_currentPkt zero");
     PointToPointNetDevice::SetCurrentPacket(nullptr);
-    for(auto queue:prio_queues)
+    for(int i=0;i<2;i++ )
     {
+        auto queue = this->prio_queues[i];
         if(Ptr<Packet> p = queue->Dequeue())
         {
+
+//                                std::cout<<i<<" dequeue"<<std::endl;
             TransmitStart((p));
             return ;
         }
     }
+//    for(auto queue:prio_queues)
+//    {
+//        if(Ptr<Packet> p = queue->Dequeue())
+//        {
+//            TransmitStart((p));
+//            return ;
+//        }
+//    }
 }
 
 uint16_t
@@ -135,7 +159,10 @@ Prio2Device::GetTargetQueue(Ptr<ns3::Packet> p)
         return -1;
     }
     else{
-        return metadata.GetQueueIdx();
+        if (metadata.GetLeftSize() > this->micethresh)
+            return 1;
+        else
+            return 0;
     }
 }
 

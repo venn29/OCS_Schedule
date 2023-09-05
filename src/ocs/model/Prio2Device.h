@@ -32,7 +32,11 @@ class Prio2Device : public PointToPointNetDevice
     void TransmitComplete();
     bool TransmitStart(Ptr<Packet> p);
     void DoDispose() override;
-
+    void AddQueue(Ptr<Queue<Packet>> qp){
+        this->prio_queues.push_back(qp);
+    }
+    uint32_t GetQueueNumber(){return this->queue_number;}
+    void SetQueueNumber(uint32_t qn){this->queue_number = qn;}
 
 
   private:
@@ -42,6 +46,8 @@ class Prio2Device : public PointToPointNetDevice
     uint16_t EtherToPpp(uint16_t proto);
 
     uint16_t GetTargetQueue(Ptr<Packet> p);
+
+    uint32_t micethresh = 50;
 };
 }
 #endif // NS3_PRIO2DEVICE_H

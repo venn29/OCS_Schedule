@@ -1,5 +1,6 @@
 import os
 
+os.system("rm ./Tscsv/*.pcap")
 PcapPath = "../"
 TscsvPath = "./Tscsv/"
 Prefix = "HO0"
@@ -9,6 +10,6 @@ for root,ds,fs in os.walk(PcapPath):
     for f in fs:
         if(f[0:3] == Prefix and root == "../"):
             print(f)
-            cmdline = cmdpre + PcapPath + f + cmdtail + f[2:6]
+            cmdline = cmdpre + PcapPath + f + cmdtail + f[2:-7]
             print(cmdline)
             os.system(cmdline)

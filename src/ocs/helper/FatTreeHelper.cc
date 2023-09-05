@@ -6,6 +6,7 @@
 #include "ns3/internet-stack-helper.h"
 #include "ns3/point-to-point-helper.h"
 #include "ns3/Prio2Device.h"
+#include "ns3/Prio2DeviceHelper.h"
 
 /* Address Resolution Macros */
 
@@ -106,36 +107,63 @@ FatTreeHelper::Create()
     }
 
     //aggr and edge
+    //for ours
+//    for (int pod = 0; pod < this->podnum; pod++)
+//    {
+//        for (int aggr = 0; aggr < this->agginpodnum; aggr++)
+//        {
+//            for (int edge = 0; edge < edgeinpodnum; edge++)
+//            {
+////                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
+//                int aggrn = this->agginpodnum * pod + aggr;
+//                int edgen = edgeinpodnum * pod + edge;
+//                NodeContainer nc;
+//                NetDeviceContainer ndc;
+//
+//                Prio2DeviceHelper pr2dh = Prio2DeviceHelper(QueueSize("1000kB"));
+//
+//                pr2dh.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
+//                pr2dh.SetChannelAttribute ("Delay", StringValue ("4us"));
+//                pr2dh.SetPrioDeviceRate("10Gbps");
+//                pr2dh.SetEnableFlowControl(false);
+//                ndc = pr2dh.Install(this->edgesw.Get(edgen),this->aggrsw.Get(aggrn));
+////                this->aggtordevs.push_back(&ndc);
+//                //allocate addr
+//                std::stringstream  addrbase;
+//                addrbase << AGGREDGE(pod,aggr,edge);
+//                address.SetBase(addrbase.str().c_str(),"255.255.255.0");
+//                Ipv4InterfaceContainer rootIface = address.Assign(ndc);
+//            }
+//        }
+//    }
+    //for others
     for (int pod = 0; pod < this->podnum; pod++)
     {
         for (int aggr = 0; aggr < this->agginpodnum; aggr++)
         {
             for (int edge = 0; edge < edgeinpodnum; edge++)
             {
-//                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
+                //                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
                 int aggrn = this->agginpodnum * pod + aggr;
                 int edgen = edgeinpodnum * pod + edge;
                 NodeContainer nc;
                 NetDeviceContainer ndc;
-                PointToPointHelper p2p;
-                p2p.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
-                p2p.SetChannelAttribute ("Delay", StringValue ("4us"));
-                p2p.DisableFlowControl();
+                PointToPointHelper pr2dh ;
 
-                nc = NodeContainer(this->aggrsw.Get(aggrn),this->edgesw.Get(edgen));
-                ndc = p2p.Install(nc);
-//                this->aggtordevs.push_back(&ndc);
+                pr2dh.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
+                pr2dh.SetChannelAttribute ("Delay", StringValue ("4us"));
+                pr2dh.DisableFlowControl();
+                nc = NodeContainer(this->edgesw.Get(edgen),this->aggrsw.Get(aggrn));
+                ndc = pr2dh.Install(nc);
+                //                this->aggtordevs.push_back(&ndc);
                 //allocate addr
                 std::stringstream  addrbase;
                 addrbase << AGGREDGE(pod,aggr,edge);
                 address.SetBase(addrbase.str().c_str(),"255.255.255.0");
-                Ipv4InterfaceContainer rootIface = address.Assign(ndc);
-
-//                this->SetPfifoSizeQueueDisc(ndc.Get(1),nc.Get(1)->GetObject<TrafficControlLayer>());
+                Ipv4InterfaceContainer aggrIface = address.Assign(ndc);
             }
         }
     }
-
     //edge and host
     for (int pod = 0; pod < this->podnum; pod++)
     {
@@ -161,7 +189,7 @@ FatTreeHelper::Create()
                 std::stringstream  addrbase;
                 addrbase << EDGENODE(pod,edge,node);
                 address.SetBase(addrbase.str().c_str(),"255.255.255.0");
-                Ipv4InterfaceContainer rootIface = address.Assign(ndc);
+                Ipv4InterfaceContainer edgeIface = address.Assign(ndc);
             }
         }
     }
@@ -200,7 +228,7 @@ FatTreeHelper::SetOcsSingle(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw )
     }
     //ocs routing
     Ptr<Ipv4OcsRouting> OcsRoutingP = new Ipv4OcsRouting();
-    Ptr<SingleRouteSchedule> RouteScheduler = new SingleRouteSchedule(MicroSeconds(180), MicroSeconds(20),MicroSeconds(0),OCSLinkhelper.GetQueueNumber(),ocssw,OcsRoutingP, Seconds(10));
+    Ptr<SingleRouteSchedule> RouteScheduler = new SingleRouteSchedule(MicroSeconds(240), MicroSeconds(20),MicroSeconds(0),OCSLinkhelper.GetQueueNumber(),ocssw,OcsRoutingP, Seconds(10));
     RouteScheduler->SetBufferOutFile("./BufferRecord.txt");
     Ptr<Ipv4L3Protocol> OcsIpv4 = ocssw->GetObject<Ipv4L3Protocol>();
     OcsIpv4->SetRoutingProtocol(OcsRoutingP);
@@ -256,7 +284,7 @@ FatTreeHelper::SetOcsMulti(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw,std::
     }
     //ocs routing
     Ptr<Ipv4OcsRouting> OcsRoutingP = new Ipv4OcsRouting();
-    Ptr<RouteSchedule> RouteScheduler = new RouteSchedule(MicroSeconds(180), MicroSeconds(20),MicroSeconds(0),OCSLinkhelper.GetQueueNumber(),ocssw,OcsRoutingP, Seconds(10));
+    Ptr<RouteSchedule> RouteScheduler = new RouteSchedule(MicroSeconds(240), MicroSeconds(20),MicroSeconds(0),OCSLinkhelper.GetQueueNumber(),ocssw,OcsRoutingP, Seconds(10));
     RouteScheduler->SetBufferOutFile("./BufferRecord.txt");
     Ptr<Ipv4L3Protocol> OcsIpv4 = ocssw->GetObject<Ipv4L3Protocol>();
     OcsIpv4->SetRoutingProtocol(OcsRoutingP);

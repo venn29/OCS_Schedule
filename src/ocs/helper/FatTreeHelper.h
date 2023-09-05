@@ -79,7 +79,7 @@ class FatTreeHelper
     std::vector<NetDeviceContainer*> tornodedevs;
     std::vector<NetDeviceContainer> torocsdevs;
 
-        void SetPfifoSizeQueueDisc(Ptr<NetDevice> dv,Ptr<TrafficControlLayer> tc)
+    void SetPfifoSizeQueueDisc(Ptr<NetDevice> dv,Ptr<TrafficControlLayer> tc)
     {
         Ptr<PointToPointNetDevice> p2pdv = DynamicCast<PointToPointNetDevice>(dv);
         p2pdv->SetQueueSize(QueueSize("3100B"));

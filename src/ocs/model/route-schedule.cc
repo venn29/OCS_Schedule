@@ -26,7 +26,7 @@ RouteSchedule::GetTypeId()
 
 RouteSchedule::RouteSchedule()
     :time_intervalNs(20),
-      ReConfigurableNs(180),
+      ReConfigurableNs(240),
       next_schedule_time(0),
       WaitingQueueSize(1),
       OCS(nullptr),

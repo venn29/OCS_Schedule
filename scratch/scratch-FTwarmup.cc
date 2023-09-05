@@ -32,22 +32,23 @@ int main(int argc,char* argv[])
 {
     CommandLine cmd;
     cmd.Parse(argc,argv);
-    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1446));
+    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(9400)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(850)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(12220)));
+//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(1300)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
     Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
-
+    ns3::RngSeedManager::SetSeed(1530);
+    ns3::RngSeedManager::SetRun(7);
 //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
-//    FatTreeHelper* ft = new FatTreeHelper(10);
-    FatTreeHelper* ft = new FatTreeHelper(4);
+    FatTreeHelper* ft = new FatTreeHelper(10);
+//    FatTreeHelper* ft = new FatTreeHelper(4);
     ft->Create();
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
@@ -59,7 +60,11 @@ int main(int argc,char* argv[])
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(2),ft->GetNodeInEdge(0),64,10001,10240*1024, Seconds(0.000001));
+    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000520));
+    apl->AddClientSet(ft->GetNodeInEdge(0));
+    apl->AddServerSet(ft->GetNodeInEdge(6));
+    apl->CreatePlanUniform(5000);
+
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
