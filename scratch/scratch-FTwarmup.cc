@@ -35,7 +35,7 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(12220)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(11960)));
 //    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(1300)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));

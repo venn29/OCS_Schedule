@@ -1,6 +1,6 @@
 import os
 
-os.system("rm ./Tscsv/*.pcap")
+os.system("rm ./Tscsv/*")
 PcapPath = "../"
 TscsvPath = "./Tscsv/"
 Prefix = "HO0"

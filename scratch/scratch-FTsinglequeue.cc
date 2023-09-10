@@ -60,7 +60,9 @@ int main(int argc,char* argv[])
     apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,10240*1024, Seconds(0.000520));
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
-    apl->CreatePlanUniform(10000);
+    apl->CreatePlanUniform(25000);
+//    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),1,10001,10240*1024, Seconds(0.000520));
+
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));

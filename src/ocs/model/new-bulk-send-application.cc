@@ -29,10 +29,13 @@
 #include "ns3/socket-factory.h"
 #include "ns3/socket.h"
 #include "ns3/tcp-socket-factory.h"
+#include "ns3/tcp-socket-base.h"
 #include "ns3/trace-source-accessor.h"
 #include "ns3/uinteger.h"
 
 #include "OcsUtils.h"
+
+
 
 namespace ns3
 {
@@ -133,6 +136,10 @@ NewBulkSendApplication::DoDispose()
     Application::DoDispose();
 }
 
+void CwndChange(std::string context,uint32_t oldCwnd, uint32_t newCwnd)
+{
+    NS_LOG_UNCOND(context<<","<<ns3::Simulator::Now().GetSeconds() << "," << newCwnd);
+}
 // Application Methods
 void
 NewBulkSendApplication::StartApplication() // Called at time specified by Start
@@ -144,8 +151,15 @@ NewBulkSendApplication::StartApplication() // Called at time specified by Start
     if (!m_socket)
     {
         m_socket = Socket::CreateSocket(GetNode(), m_tid);
-        int ret = -1;
+//
+//        InetSocketAddress transport = InetSocketAddress::ConvertFrom(m_peer);
+//        std::stringstream ss;
+//        ss<<transport.GetPort();
+//        if(transport.GetPort() < 20000)
+//            m_socket->TraceConnect("CongestionWindow",ss.str(), MakeCallback(&CwndChange));
 
+
+        int ret = -1;
         // Fatal error if socket type is not NS3_SOCK_STREAM or NS3_SOCK_SEQPACKET
         if (m_socket->GetSocketType() != Socket::NS3_SOCK_STREAM &&
             m_socket->GetSocketType() != Socket::NS3_SOCK_SEQPACKET)

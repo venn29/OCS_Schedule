@@ -107,36 +107,37 @@ FatTreeHelper::Create()
     }
 
     //aggr and edge
-    //for ours
-//    for (int pod = 0; pod < this->podnum; pod++)
-//    {
-//        for (int aggr = 0; aggr < this->agginpodnum; aggr++)
-//        {
-//            for (int edge = 0; edge < edgeinpodnum; edge++)
-//            {
+//    for ours
+    for (int pod = 0; pod < this->podnum; pod++)
+    {
+        for (int aggr = 0; aggr < this->agginpodnum; aggr++)
+        {
+            for (int edge = 0; edge < edgeinpodnum; edge++)
+            {
 ////                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
-//                int aggrn = this->agginpodnum * pod + aggr;
-//                int edgen = edgeinpodnum * pod + edge;
-//                NodeContainer nc;
-//                NetDeviceContainer ndc;
-//
-//                Prio2DeviceHelper pr2dh = Prio2DeviceHelper(QueueSize("1000kB"));
-//
-//                pr2dh.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
-//                pr2dh.SetChannelAttribute ("Delay", StringValue ("4us"));
-//                pr2dh.SetPrioDeviceRate("10Gbps");
-//                pr2dh.SetEnableFlowControl(false);
-//                ndc = pr2dh.Install(this->edgesw.Get(edgen),this->aggrsw.Get(aggrn));
+                int aggrn = this->agginpodnum * pod + aggr;
+                int edgen = edgeinpodnum * pod + edge;
+                NodeContainer nc;
+                NetDeviceContainer ndc;
+
+                Prio2DeviceHelper pr2dh = Prio2DeviceHelper(QueueSize("1000kB"));
+
+                pr2dh.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
+                pr2dh.SetChannelAttribute ("Delay", StringValue ("4us"));
+                pr2dh.SetPrioDeviceRate("10Gbps");
+                pr2dh.SetEnableFlowControl(false);
+                ndc = pr2dh.Install(this->edgesw.Get(edgen),this->aggrsw.Get(aggrn));
 ////                this->aggtordevs.push_back(&ndc);
-//                //allocate addr
-//                std::stringstream  addrbase;
-//                addrbase << AGGREDGE(pod,aggr,edge);
-//                address.SetBase(addrbase.str().c_str(),"255.255.255.0");
-//                Ipv4InterfaceContainer rootIface = address.Assign(ndc);
-//            }
-//        }
-//    }
+                //allocate addr
+                std::stringstream  addrbase;
+                addrbase << AGGREDGE(pod,aggr,edge);
+                address.SetBase(addrbase.str().c_str(),"255.255.255.0");
+                Ipv4InterfaceContainer rootIface = address.Assign(ndc);
+            }
+        }
+    }
     //for others
+    /*
     for (int pod = 0; pod < this->podnum; pod++)
     {
         for (int aggr = 0; aggr < this->agginpodnum; aggr++)
@@ -163,7 +164,7 @@ FatTreeHelper::Create()
                 Ipv4InterfaceContainer aggrIface = address.Assign(ndc);
             }
         }
-    }
+    }*/
     //edge and host
     for (int pod = 0; pod < this->podnum; pod++)
     {

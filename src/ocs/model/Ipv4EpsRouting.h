@@ -15,6 +15,7 @@
 #include "ns3/socket.h"
 #include "ns3/node-container.h"
 #include "ns3/random-variable-stream.h"
+#include "ns3/simulator.h"
 
 #include <list>
 #include <stdint.h>
@@ -35,12 +36,18 @@ class Node;
 class Flow : public Object
 {
   public:
-    Flow(Ipv4Address srcIp,Ipv4Address destIp,uint8_t protocol, uint16_t src_port, uint16_t dst_port){
+    Flow(Ipv4Address srcIp,Ipv4Address destIp,uint8_t protocol, uint16_t src_port, uint16_t dst_port,uint32_t initial_warmupthresh){
         this->srcip = srcIp;
         this->destip = destIp;
         this->srcport = src_port;
         this->destport = dst_port;
         this->proto = protocol;
+        this->initial_warmup_thresh = initial_warmupthresh;
+        this->warmup_thresh = initial_warmupthresh;
+        this->sentp = 0;
+        this->prev_sent = 0;
+        this->sentp_thresh = 25;
+
     }
     ~Flow(){};
 
@@ -104,7 +111,15 @@ class Flow : public Object
 
     void DropPacket(){
         this->enqueued = false;
+        if(sentp != 0 )
+	    this->prev_sent = this->sentp;
+        if(prev_sent < this->sentp_thresh)
+            this->warmup_thresh = this->initial_warmup_thresh*2;
+        else
+            this->warmup_thresh = this->initial_warmup_thresh;
         this->sentp = 0;
+        std::cout<<this->destport<<","<<ns3::Simulator::Now().GetSeconds()<<","<<this->sentp<<","<<this->warmup_thresh<<"\n";
+
     }
 
     bool GetEnqueueStatus(){return this->enqueued;}
@@ -116,9 +131,13 @@ class Flow : public Object
     void ReceiveSequence() {
         //retransmission
        ++this->sentp;
+       std::cout<<this->destport<<","<<ns3::Simulator::Now().GetSeconds()<<","<<this->sentp<<","<<this->warmup_thresh<<"\n";
     }
 
     void SetEnqueued(){this->enqueued = true;}
+
+    void SetWarmupThresh(uint32_t wpth){this->warmup_thresh = wpth;}
+    uint32_t GetWarmupThresh() {return this->warmup_thresh;}
 
   private:
     Ipv4Address srcip,destip;
@@ -129,6 +148,13 @@ class Flow : public Object
     bool enqueued;
     //sended packets during warm up process
     size_t sentp;
+    //warmup thresh of this flow, for common flow, it should equal to the initial value, for under transmitting flows ,it should be 2*initial value
+    uint32_t warmup_thresh;
+    uint32_t initial_warmup_thresh;
+    //prev sent
+    uint32_t prev_sent;
+    //sentp thresh
+    uint32_t sentp_thresh;
 };
 
 
@@ -271,3 +297,4 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
 
 
 #endif // NS3_IPV4EPSROUTING_H
+

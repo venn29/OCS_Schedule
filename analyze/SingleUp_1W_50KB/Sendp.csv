@@ -1,0 +1,4 @@
+[0/2] Re-checking globbed directories...
+[1/2] Building CXX object scratch/CMakeFiles/scratch_scratch-FTsinglequeue.dir/scratch-FTsinglequeue.cc.o
+[2/2] Linking CXX executable /home/venn/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-scratch-FTsinglequeue-relwithdebinfo
+create 10001 flows

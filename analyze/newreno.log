@@ -1,1 +1,1367 @@
-zsh: 没有那个文件或目录: ./ns3
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
++1.07546e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07561e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07576e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07591e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07606e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07621e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07636e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07651e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07666e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07681e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07696e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07711e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07726e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07741e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07756e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07771e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07786e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07801e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07816e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07831e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07846e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07861e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07876e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07891e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07906e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07921e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07936e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07951e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07966e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07981e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.07996e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08011e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08026e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08041e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08056e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08071e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08086e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08101e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08116e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08131e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08146e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08161e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08176e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08191e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08206e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08221e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08236e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.08251e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++1.11429e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11444e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11459e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11474e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11489e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11504e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11519e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11534e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11549e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11564e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11579e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11594e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11609e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11624e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11639e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11654e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11669e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11684e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11699e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11714e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11729e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11744e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11759e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11774e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11789e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11804e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11819e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11834e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11849e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11864e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11879e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11894e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11909e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11924e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11939e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11954e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11969e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.11984e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.11999e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12014e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12029e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12044e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12059e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12074e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12089e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12104e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12119e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12134e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12149e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12164e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12179e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12194e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12209e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12224e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12239e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12254e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12269e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12284e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12299e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12314e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12329e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12344e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12359e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12374e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12389e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12404e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12419e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12434e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12449e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12464e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12479e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12494e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12509e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12524e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12539e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12554e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12569e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12584e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12599e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12614e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12629e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12644e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12659e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12674e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12689e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12704e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12719e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12734e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++1.12749e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12764e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12779e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12794e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12809e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12824e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12839e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++1.12854e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
++2.44068e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44083e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44098e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44113e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44128e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44143e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44158e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44173e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44188e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44203e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44218e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44233e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44248e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44263e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44278e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44293e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44308e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44323e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44338e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44353e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44368e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44383e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44398e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44413e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44428e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44443e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44458e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44473e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44488e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44503e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44518e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44548e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44593e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44623e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44638e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44668e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44698e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44713e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.44728e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44773e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.44788e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44803e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44863e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44878e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.44938e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.44953e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.45013e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.45073e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.45088e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.45103e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.45148e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.45163e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.45208e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.45223e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++2.45238e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.45253e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.45298e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.45328e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++2.45388e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.45403e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.45418e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++2.45433e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.45493e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.45508e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.45568e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++2.45583e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10679 ssthresh 5784
+In CongAvoid, updated to cwnd 10679 ssthresh 5784
+In CongAvoid, updated to cwnd 10679 ssthresh 5784
+In CongAvoid, updated to cwnd 10679 ssthresh 5784
+In CongAvoid, updated to cwnd 10480 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10679 ssthresh 5784
+In CongAvoid, updated to cwnd 10679 ssthresh 5784
+In CongAvoid, updated to cwnd 10679 ssthresh 5784
++3.83783e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.83828e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.83843e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.83873e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.83888e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.83903e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.83963e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.83978e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.83993e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.84008e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.84038e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.84068e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.84098e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.84113e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.84128e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.84143e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.84173e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.84188e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.85073e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85106e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8512e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85135e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85135e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8515e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85151e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85165e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8518e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85195e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85225e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85226e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85345e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8539e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8539e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85405e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8542e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85433e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85465e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8551e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85511e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8554e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85615e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8563e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85675e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8569e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85705e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85705e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8572e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85721e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85735e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.8575e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.85765e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
++3.88956e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.88991e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89006e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89021e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89036e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89051e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89066e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89081e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89109e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.89184e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89214e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89259e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89304e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89334e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89349e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89364e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89379e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89394e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89426e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89439e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89456e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89469e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89484e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89499e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89544e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89634e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89636e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89649e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89666e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89681e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89694e+06ns In SlowStart, updated to cwnd 2892 ssthresh 5784
++3.89726e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89727e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89741e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89756e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89771e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89786e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89801e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89816e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89831e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.89846e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89874e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89891e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.89906e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89921e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.89981e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.89996e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.90026e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8222 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8476 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8722 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
+In CongAvoid, updated to cwnd 8961 ssthresh 5784
++3.92874e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.92889e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.92904e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.92919e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.92934e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.92949e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.92979e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.92994e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93024e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93054e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93099e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93129e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93189e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93234e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93294e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93309e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93369e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93429e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93459e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.93474e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93489e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93504e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93564e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93579e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93609e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93624e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93654e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93669e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.93684e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
++3.93699e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93744e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93804e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93819e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93864e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93909e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.93939e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.93954e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.93999e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.94044e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.94074e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
++3.94089e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.94134e+06ns In SlowStart, updated to cwnd 4338 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
++3.94179e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.94209e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
++3.94374e+06ns In SlowStart, updated to cwnd 5784 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9194 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9421 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9642 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 9858 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10070 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 10277 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 6145 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7114 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 6485 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7960 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 6807 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+In CongAvoid, updated to cwnd 7407 ssthresh 5784
+In CongAvoid, updated to cwnd 7689 ssthresh 5784
+Process was interrupted by the user

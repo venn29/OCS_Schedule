@@ -264,11 +264,12 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
             else if (m_bypass == cwndbased)
             {
                 //going bypass, we do not take udp into consideration
-                if( pflow->GetSent() < this->ssthresh && protocal == 6)
+                if( pflow->GetSent() < pflow->GetWarmupThresh() && protocal == 6)
                 {
-                    pflow->ReceiveSequence();
-                    return false;
+                	pflow->ReceiveSequence();
+                	return false;
                 }
+                    
             }
         }
         if(!flow_enqueued){
@@ -374,7 +375,7 @@ Ipv4EpsRouting::LookupEps(ns3::Ipv4Address dest, Ptr<ns3::NetDevice> oif)
 void
 Ipv4EpsRouting::AddEnqueuedFlow(uint32_t q_idx,Ipv4Address srcIp,Ipv4Address destIp, uint16_t src_port, uint16_t dst_port, uint8_t protocol  )
 {
-    auto f = new Flow(srcIp,destIp,protocol,src_port,dst_port);
+    auto f = new Flow(srcIp,destIp,protocol,src_port,dst_port,this->ssthresh);
     auto hash = f->HashFLow();
     auto m = this->enqueued_flows[q_idx];
     m.insert(std::make_pair(hash,f));
@@ -387,7 +388,7 @@ Ipv4EpsRouting::AddUpFlow(Ipv4Address srcIp,
                           uint16_t dst_port,
                           uint8_t protocol)
 {
-    auto f = new Flow(srcIp,destIp,protocol,src_port,dst_port);
+    auto f = new Flow(srcIp,destIp,protocol,src_port,dst_port,this->ssthresh);
     auto hash = f->HashFLow();
     this->all_upflows.insert(std::make_pair(hash,f));
     return f;
