@@ -39,7 +39,7 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
 //    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(2000)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(12220)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(20960)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
@@ -51,13 +51,13 @@ int main(int argc,char* argv[])
 
     FatTreeHelper* ft = new FatTreeHelper(10);
 //    FatTreeHelper* ft = new FatTreeHelper(10);
-    ft->Create();
+    ft->Create(false);
     uint32_t  queuenumber = 49;
     NodeContainer OCS;
     OCS.Create(1);
     Ptr<Node> ocsnode = OCS.Get(0);
 //    QueueSize queueSize =  QueueSize("250kB");
-    QueueSize queueSize =  QueueSize("25kB");
+    QueueSize queueSize =  QueueSize("35kB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
     ft->SetOcsMulti(OCSLinks,ocsnode,"nobypass");
 
@@ -65,7 +65,8 @@ int main(int argc,char* argv[])
     apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000520));
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
-    apl->CreatePlanUniform(5000);
+//    apl->CreatePlanUniform(5000);
+    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));

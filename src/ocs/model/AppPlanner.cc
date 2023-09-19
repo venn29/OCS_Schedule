@@ -8,6 +8,7 @@
 #include "ns3/new-bulk-send-helper.h"
 #include "ns3/new-bulk-send-application.h"
 #include <cmath>
+#include <vector>
 namespace ns3
 {
 NS_LOG_COMPONENT_DEFINE("AppPlanner");
@@ -16,7 +17,7 @@ NS_OBJECT_ENSURE_REGISTERED(AppPlanner);
 AppPlanner::AppPlanner()
     :randomselecthost(CreateObject<UniformRandomVariable>()),
       randompoisson(CreateObject<UniformRandomVariable>()),
-      flowthresh(1024*50),
+      flowthresh(1024*200),
       smallportstart(20001),
       bigportstart(10001),
       hostpertor(16),
@@ -104,6 +105,35 @@ AppPlanner::RegisterFlow(uint32_t flowsize,Time starttime)
 }
 
 void
+AppPlanner::RegisterFlow(uint32_t flowsize,Time starttime,uint32_t from, uint32_t dst)
+{
+    //select client and dest port
+
+    Ptr<Node> client = this->clients[0].Get(from);
+    int port;
+    if(flowsize <= this->flowthresh)
+        port  = smallflow_portcurrent[0]++;
+    else
+        port = bigflow_portcurrent[0]++;
+    //select server
+    Ptr<Node> server = this->servers[0].Get(dst);
+    Ipv4Address serveripv4 = server->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
+
+    //APP helper
+    NewBulkSendHelper senderapph("ns3::TcpSocketFactory",InetSocketAddress(serveripv4,port));
+    PacketSinkHelper receivapph("ns3::TcpSocketFactory",InetSocketAddress(Ipv4Address::GetAny(),port));
+    senderapph.SetAttribute("MaxBytes", UintegerValue(flowsize));
+    senderapph.SetAttribute("SendSize", UintegerValue(uint32_t(1458)));
+    //APP Container
+    ApplicationContainer sendappcontainer = senderapph.Install(client);
+    sendappcontainer.Start(starttime);
+    sendappcontainer.Stop(this->endtime);
+    ApplicationContainer receiveappcontainer = receivapph.Install(server);
+    receiveappcontainer.Start(starttime);
+    receiveappcontainer.Stop(this->endtime);
+}
+
+void
 AppPlanner::CreatePlanPoisson()
 {
     Time timenow = Seconds(0);
@@ -135,6 +165,36 @@ AppPlanner::CreatePlanUniform(double flownum)
         x++;
     }
     std::cout<<"create "<<x<<" flows"<<std::endl;
+}
+
+void
+AppPlanner::CreatePlanFromTrace(std::string path)
+{
+    std::ifstream csv_data(path,std::ios::in);
+    if(!csv_data.is_open())
+    {
+        std::cout<<"Error open trace file fail"<<std::endl;
+        exit(-1);
+    }
+    std::string line;
+    std::vector<std::string> words;
+    std::string word;
+    std::istringstream sin;
+    while(getline(csv_data,line))
+    {
+        words.clear();
+        sin.clear();
+        sin.str(line);
+        while(getline(sin,word,','))
+        {
+            words.push_back(word);
+        }
+        int t = atoi(words[0].c_str());
+        int dst = atoi(words[1].c_str());
+        int size = atoi(words[2].c_str());
+        this->RegisterFlow(size,NanoSeconds(t),dst,dst);
+    }
+
 }
 
 void

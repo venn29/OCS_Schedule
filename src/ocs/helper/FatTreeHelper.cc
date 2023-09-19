@@ -57,7 +57,7 @@ FatTreeHelper::SetSWnum()
 }
 
 void
-FatTreeHelper::Create()
+FatTreeHelper::Create(bool PrioQueue)
 {
     //Create Node
     this->rootsw.Create(this->rootswnum);
@@ -108,63 +108,68 @@ FatTreeHelper::Create()
 
     //aggr and edge
 //    for ours
-    for (int pod = 0; pod < this->podnum; pod++)
+    if(PrioQueue)
     {
-        for (int aggr = 0; aggr < this->agginpodnum; aggr++)
+        for (int pod = 0; pod < this->podnum; pod++)
         {
-            for (int edge = 0; edge < edgeinpodnum; edge++)
+            for (int aggr = 0; aggr < this->agginpodnum; aggr++)
             {
-////                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
-                int aggrn = this->agginpodnum * pod + aggr;
-                int edgen = edgeinpodnum * pod + edge;
-                NodeContainer nc;
-                NetDeviceContainer ndc;
+                for (int edge = 0; edge < edgeinpodnum; edge++)
+                {
+                    ////                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
+                    int aggrn = this->agginpodnum * pod + aggr;
+                    int edgen = edgeinpodnum * pod + edge;
+                    NodeContainer nc;
+                    NetDeviceContainer ndc;
 
-                Prio2DeviceHelper pr2dh = Prio2DeviceHelper(QueueSize("1000kB"));
+                    Prio2DeviceHelper pr2dh = Prio2DeviceHelper(QueueSize("150kB"));
 
-                pr2dh.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
-                pr2dh.SetChannelAttribute ("Delay", StringValue ("4us"));
-                pr2dh.SetPrioDeviceRate("10Gbps");
-                pr2dh.SetEnableFlowControl(false);
-                ndc = pr2dh.Install(this->edgesw.Get(edgen),this->aggrsw.Get(aggrn));
-////                this->aggtordevs.push_back(&ndc);
-                //allocate addr
-                std::stringstream  addrbase;
-                addrbase << AGGREDGE(pod,aggr,edge);
-                address.SetBase(addrbase.str().c_str(),"255.255.255.0");
-                Ipv4InterfaceContainer rootIface = address.Assign(ndc);
+                    pr2dh.SetDeviceAttribute("DataRate", StringValue("10Gbps"));
+                    pr2dh.SetChannelAttribute("Delay", StringValue("4us"));
+                    pr2dh.SetPrioDeviceRate("10Gbps");
+                    pr2dh.SetEnableFlowControl(false);
+                    ndc = pr2dh.Install(this->edgesw.Get(edgen), this->aggrsw.Get(aggrn));
+                    ////                this->aggtordevs.push_back(&ndc);
+                    // allocate addr
+                    std::stringstream addrbase;
+                    addrbase << AGGREDGE(pod, aggr, edge);
+                    address.SetBase(addrbase.str().c_str(), "255.255.255.0");
+                    Ipv4InterfaceContainer rootIface = address.Assign(ndc);
+                }
             }
         }
     }
     //for others
-    /*
-    for (int pod = 0; pod < this->podnum; pod++)
+    else
     {
-        for (int aggr = 0; aggr < this->agginpodnum; aggr++)
+        for (int pod = 0; pod < this->podnum; pod++)
         {
-            for (int edge = 0; edge < edgeinpodnum; edge++)
+            for (int aggr = 0; aggr < this->agginpodnum; aggr++)
             {
-                //                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
-                int aggrn = this->agginpodnum * pod + aggr;
-                int edgen = edgeinpodnum * pod + edge;
-                NodeContainer nc;
-                NetDeviceContainer ndc;
-                PointToPointHelper pr2dh ;
+                for (int edge = 0; edge < edgeinpodnum; edge++)
+                {
+                    //                int linkn = ((this->edgeinpodnum * this->agginpodnum * pod) + this->edgeinpodnum * aggr + edge);
+                    int aggrn = this->agginpodnum * pod + aggr;
+                    int edgen = edgeinpodnum * pod + edge;
+                    NodeContainer nc;
+                    NetDeviceContainer ndc;
+                    PointToPointHelper pr2dh;
 
-                pr2dh.SetDeviceAttribute("DataRate",StringValue("10Gbps"));
-                pr2dh.SetChannelAttribute ("Delay", StringValue ("4us"));
-                pr2dh.DisableFlowControl();
-                nc = NodeContainer(this->edgesw.Get(edgen),this->aggrsw.Get(aggrn));
-                ndc = pr2dh.Install(nc);
-                //                this->aggtordevs.push_back(&ndc);
-                //allocate addr
-                std::stringstream  addrbase;
-                addrbase << AGGREDGE(pod,aggr,edge);
-                address.SetBase(addrbase.str().c_str(),"255.255.255.0");
-                Ipv4InterfaceContainer aggrIface = address.Assign(ndc);
+                    pr2dh.SetDeviceAttribute("DataRate", StringValue("10Gbps"));
+                    pr2dh.SetChannelAttribute("Delay", StringValue("4us"));
+                    pr2dh.DisableFlowControl();
+                    nc = NodeContainer(this->edgesw.Get(edgen), this->aggrsw.Get(aggrn));
+                    ndc = pr2dh.Install(nc);
+                    //                this->aggtordevs.push_back(&ndc);
+                    // allocate addr
+                    std::stringstream addrbase;
+                    addrbase << AGGREDGE(pod, aggr, edge);
+                    address.SetBase(addrbase.str().c_str(), "255.255.255.0");
+                    Ipv4InterfaceContainer aggrIface = address.Assign(ndc);
+                }
             }
         }
-    }*/
+    }
     //edge and host
     for (int pod = 0; pod < this->podnum; pod++)
     {
@@ -306,7 +311,7 @@ FatTreeHelper::EPSRouteInstall(ns3::NodeContainer TORs, uint32_t queuenumber,std
             //            std::cout<<"error not listrouting, insert failed";
             return;
         }
-        Ptr<Ipv4EpsRouting> SepsRouting = new Ipv4EpsRouting(queuenumber,50,0.0,0.0);
+        Ptr<Ipv4EpsRouting> SepsRouting = new Ipv4EpsRouting(queuenumber,200,0.0,0.0);
         if(routetype.compare("warmup") == 0)
             SepsRouting->SetBypassStrategy(Ipv4EpsRouting::cwndbased);
         else if (routetype.compare("nobypass") == 0)

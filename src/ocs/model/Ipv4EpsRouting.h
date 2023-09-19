@@ -47,7 +47,7 @@ class Flow : public Object
         this->sentp = 0;
         this->prev_sent = 0;
         this->sentp_thresh = 25;
-
+        this->fout.open("Sendp.csv",std::ios::app);
     }
     ~Flow(){};
 
@@ -112,13 +112,13 @@ class Flow : public Object
     void DropPacket(){
         this->enqueued = false;
         if(sentp != 0 )
-	    this->prev_sent = this->sentp;
+	        this->prev_sent = this->sentp;
         if(prev_sent < this->sentp_thresh)
             this->warmup_thresh = this->initial_warmup_thresh*2;
         else
             this->warmup_thresh = this->initial_warmup_thresh;
         this->sentp = 0;
-        std::cout<<this->destport<<","<<ns3::Simulator::Now().GetSeconds()<<","<<this->sentp<<","<<this->warmup_thresh<<"\n";
+        this->fout<<this->destport<<","<<ns3::Simulator::Now().GetSeconds()<<","<<this->sentp<<","<<this->warmup_thresh<<"\n";
 
     }
 
@@ -131,7 +131,7 @@ class Flow : public Object
     void ReceiveSequence() {
         //retransmission
        ++this->sentp;
-       std::cout<<this->destport<<","<<ns3::Simulator::Now().GetSeconds()<<","<<this->sentp<<","<<this->warmup_thresh<<"\n";
+       this->fout<<this->destport<<","<<ns3::Simulator::Now().GetSeconds()<<","<<this->sentp<<","<<this->warmup_thresh<<"\n";
     }
 
     void SetEnqueued(){this->enqueued = true;}
@@ -155,6 +155,7 @@ class Flow : public Object
     uint32_t prev_sent;
     //sentp thresh
     uint32_t sentp_thresh;
+    std::ofstream fout;
 };
 
 

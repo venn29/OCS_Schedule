@@ -1,6 +1,10 @@
 //
-// Created by schedule on 8/18/23.
+// Created by venn on 23-9-19.
 //
+
+//packet only
+
+
 #include "ns3/core-module.h"
 #include "ns3/applications-module.h"
 #include "ns3/internet-module.h"
@@ -35,20 +39,20 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(11960)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(3640)));
+    //    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(11960)));
+//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(17680)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
-    Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
-    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(false));
+//    Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
+    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
     Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
     ns3::RngSeedManager::SetSeed(1530);
     ns3::RngSeedManager::SetRun(7);
-//    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
+    //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
-//    FatTreeHelper* ft = new FatTreeHelper(10);
-    FatTreeHelper* ft = new FatTreeHelper(6);
+    //    FatTreeHelper* ft = new FatTreeHelper(10);
+    FatTreeHelper* ft = new FatTreeHelper(12);
     ft->Create(true);
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
@@ -63,15 +67,13 @@ int main(int argc,char* argv[])
     apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000520));
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
-//    apl->CreatePlanUniform(2500);
-    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_datatest.csv");
+    //    apl->CreatePlanUniform(2500);
+    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace2W.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
-
-    p2ph.EnablePcap("HO6",ft->GetNodeInEdge(6));
-//    p2ph.EnablePcap("tor",ft->GetAllEdges());
-//    p2ph.EnablePcap("ocs",OCS);
+    //    p2ph.EnablePcap("tor",ft->GetAllEdges());
+    //    p2ph.EnablePcap("ocs",OCS);
 
     p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 

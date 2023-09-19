@@ -30,16 +30,13 @@ class Flow:
         self.goodputacklist = [0]*unitnum
         self.goodputoutlist = [0]*unitnum
         self.interval = interval
-        self.goodputlast = 0    
-
+    
     def addpacket(self,time,length,seq,ack):
         #goodput
         if(self.flowtype == 0):
             unit = int(time/self.interval)
             if self.goodputacklist[unit] < ack:
                 self.goodputacklist[unit] = ack
-                self.goodputlast = ack
-                self.lastime = time
         else:
             unit = int(time/self.interval)
             self.throughputlist[unit]+=length
@@ -92,7 +89,7 @@ CsvPath = "./Tscsv"
 
 #unit: Ns
 interval = 12740000  
-totaltime = 1000000000
+totaltime = 10000000000
 time_unit_num = int(totaltime/interval)+1
 flows = {}
 for root,ds,fs in os.walk(CsvPath):
@@ -128,8 +125,6 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
     csvsmallwriter = csv.writer(csvsmallfile)
     csvackfile = open("FlowGoodput.csv","w",newline='')
     csvackwriter = csv.writer(csvackfile)
-    csvsmallackfile = open("SmallFlowGoodput.csv","w",newline='')
-    csvsmallackwriter = csv.writer(csvsmallackfile)
     vls = sorted(flows.values(),key = functools.cmp_to_key(cmp))
     for flow in vls:
         if flow.flowtype == 0:
@@ -161,27 +156,16 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
     for flow in vls2:
         if flow.flowtype == 0:
             if int(flow.srcport) > 20000:
-                temp = []
-                temp.append(flow.src)
-                temp.append(flow.dst)
-                temp.append(flow.srcport)
-                temp.append(flow.dstport)
-                temp.append(flow.startime)
-                temp.append(flow.lastime)
-                temp.append(flow.duration)
-                temp.append(flow.finished)
-                temp.append(flow.goodputlast)
-                csvsmallackwriter.writerow(temp)
-            else:
-                flow.goodputfinal()
-                temp = []
-                temp.append(flow.src)
-                temp.append(flow.dst)
-                temp.append(flow.srcport)
-                temp.append(flow.dstport)
-                temp.append(flow.startime)
-                temp.append(flow.lastime)
-                temp.append(flow.duration)
-                temp.append(flow.finished)
-                temp = temp + flow.goodputacklist
-                csvackwriter.writerow(temp)
+                continue
+            flow.goodputfinal()
+            temp = []
+            temp.append(flow.src)
+            temp.append(flow.dst)
+            temp.append(flow.srcport)
+            temp.append(flow.dstport)
+            temp.append(flow.startime)
+            temp.append(flow.lastime)
+            temp.append(flow.duration)
+            temp.append(flow.finished)
+            temp = temp + flow.goodputacklist
+            csvackwriter.writerow(temp)

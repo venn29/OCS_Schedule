@@ -151,13 +151,13 @@ NewBulkSendApplication::StartApplication() // Called at time specified by Start
     if (!m_socket)
     {
         m_socket = Socket::CreateSocket(GetNode(), m_tid);
-//
-//        InetSocketAddress transport = InetSocketAddress::ConvertFrom(m_peer);
-//        std::stringstream ss;
-//        ss<<transport.GetPort();
-//        if(transport.GetPort() < 20000)
-//            m_socket->TraceConnect("CongestionWindow",ss.str(), MakeCallback(&CwndChange));
 
+        InetSocketAddress transport = InetSocketAddress::ConvertFrom(m_peer);
+        std::stringstream ss;
+        ss<<transport.GetPort();
+        if(transport.GetPort() < 20000)
+            m_socket->TraceConnect("CongestionWindow",ss.str(), MakeCallback(&CwndChange));
+//
 
         int ret = -1;
         // Fatal error if socket type is not NS3_SOCK_STREAM or NS3_SOCK_SEQPACKET

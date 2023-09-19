@@ -46,7 +46,7 @@ int main(int argc,char* argv[])
     ns3::RngSeedManager::SetSeed(1530);
     ns3::RngSeedManager::SetRun(7);
     FatTreeHelper* ft = new FatTreeHelper(10);
-    ft->Create();
+    ft->Create(false);
     uint32_t  queuenumber = 1;
     NodeContainer OCS;
     OCS.Create(1);
@@ -57,16 +57,17 @@ int main(int argc,char* argv[])
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,10240*1024, Seconds(0.000520));
+    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,302400*1024, Seconds(0.000520));
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
-    apl->CreatePlanUniform(25000);
+//    apl->CreatePlanUniform(2500);
+    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace.csv");
 //    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),1,10001,10240*1024, Seconds(0.000520));
 
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
-    p2ph.EnablePcap("ocs",OCS);
+//    p2ph.EnablePcap("ocs",OCS);
 
     p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 

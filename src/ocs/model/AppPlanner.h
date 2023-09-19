@@ -26,9 +26,11 @@ class AppPlanner : public Object
      void AddClientSet(NodeContainer c);
      void AddServerSet(NodeContainer s);
      void RegisterFlow(uint32_t flowSize,Time starttime);
+     void RegisterFlow(uint32_t flowSize,Time starttime,uint32_t from, uint32_t dst);
      void CreatePlanPoisson();
      void LongFlowPlan(NodeContainer servernd, NodeContainer clientnd,int flownum, uint16_t port_start,uint32_t maxbytes,Time starttime);
      void CreatePlanUniform(double flownum);
+     void CreatePlanFromTrace(std::string path);
    private:
     std::vector<NodeContainer> clients;
     std::vector<NodeContainer> servers;

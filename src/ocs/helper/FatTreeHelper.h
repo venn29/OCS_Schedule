@@ -28,7 +28,7 @@ class FatTreeHelper
   public:
     FatTreeHelper();
     FatTreeHelper(int pn);
-    void Create();
+    void Create(bool PrioQueue);
 
     void SetPodNUm(int pn) { this->podnum = pn;}
     int GetRootN() {return this->rootswnum;}
