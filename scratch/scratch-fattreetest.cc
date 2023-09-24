@@ -42,7 +42,7 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
 
     FatTreeHelper* ft = new FatTreeHelper(10);
-    ft->Create();
+    ft->Create(false);
     Ptr<AppPlanner> apl = new AppPlanner();
     apl->LongFlowPlan(ft->GetNodeInEdge(18),ft->GetNodeInEdge(3),2,10001,1024*1024, Seconds(0.000001));
     AsciiTraceHelper ascii;

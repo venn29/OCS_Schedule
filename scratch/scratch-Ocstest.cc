@@ -43,7 +43,7 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
 
     FatTreeHelper* ft = new FatTreeHelper(10);
-    ft->Create();
+    ft->Create(false);
     uint32_t  queuenumber = 1;
     NodeContainer OCS;
     OCS.Create(1);

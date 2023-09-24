@@ -51,7 +51,7 @@ int main(int argc,char* argv[])
 
     //    FatTreeHelper* ft = new FatTreeHelper(10);
     FatTreeHelper* ft = new FatTreeHelper(4);
-    ft->Create();
+    ft->Create(false);
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
     OCS.Create(1);

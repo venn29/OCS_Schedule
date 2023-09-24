@@ -3,6 +3,7 @@
 //
 
 #include "Ipv4SingleEPSRouting.h"
+#include "OcsUtils.h"
 #include "ns3/ipv4-routing-table-entry.h"
 #include "ns3/ipv4-route.h"
 #include "ns3/log.h"
@@ -95,10 +96,21 @@ Ipv4SingleEPSRouting::RouteInput(Ptr<const Packet> p,
         return true;
     }
     Ptr<Packet> packet = p->Copy();
+
+        
     //we do not have any entry for the downlink acks
     Ptr<Ipv4Route> rtentry = LookupSingleEps(ipHeader.GetDestination());
     //down traffic
     if(!rtentry)
+        return false;
+    
+    OcsTag metaData;
+    bool tag_found = packet->RemovePacketTag(metaData);
+    uint32_t size = metaData.GetLeftSize();
+        if(!tag_found)
+        return false;
+
+    if(size < 500)
         return false;
 
     bool OcsRoute = (rtentry->GetDestination() == this->ocs_dest_addr);

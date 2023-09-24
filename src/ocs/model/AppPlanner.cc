@@ -180,6 +180,7 @@ AppPlanner::CreatePlanFromTrace(std::string path)
     std::vector<std::string> words;
     std::string word;
     std::istringstream sin;
+    int flownum = 0;
     while(getline(csv_data,line))
     {
         words.clear();
@@ -193,7 +194,9 @@ AppPlanner::CreatePlanFromTrace(std::string path)
         int dst = atoi(words[1].c_str());
         int size = atoi(words[2].c_str());
         this->RegisterFlow(size,NanoSeconds(t),dst,dst);
+        flownum++;
     }
+
 
 }
 

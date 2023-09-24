@@ -35,8 +35,8 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(11960)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(3640)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(17680)));
+//    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(7280)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(false));
@@ -48,7 +48,7 @@ int main(int argc,char* argv[])
 //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
 //    FatTreeHelper* ft = new FatTreeHelper(10);
-    FatTreeHelper* ft = new FatTreeHelper(6);
+    FatTreeHelper* ft = new FatTreeHelper(12);
     ft->Create(true);
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
@@ -64,7 +64,7 @@ int main(int argc,char* argv[])
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
 //    apl->CreatePlanUniform(2500);
-    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_datatest.csv");
+    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_data4W.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));

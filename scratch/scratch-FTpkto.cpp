@@ -53,29 +53,29 @@ int main(int argc,char* argv[])
 
     //    FatTreeHelper* ft = new FatTreeHelper(10);
     FatTreeHelper* ft = new FatTreeHelper(12);
-    ft->Create(true);
-    uint32_t  queuenumber = 4;
-    NodeContainer OCS;
-    OCS.Create(1);
-    Ptr<Node> ocsnode = OCS.Get(0);
-    QueueSize queueSize =  QueueSize("400kB");
-    MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
-    ft->SetOcsMulti(OCSLinks,ocsnode,"warmup");
+    ft->Create(false);
+//    uint32_t  queuenumber = 4;
+//    NodeContainer OCS;
+//    OCS.Create(1);
+//    Ptr<Node> ocsnode = OCS.Get(0);
+//    QueueSize queueSize =  QueueSize("400kB");
+//    MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
+//    ft->SetOcsMulti(OCSLinks,ocsnode,"warmup");
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000520));
+//    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000520));
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
     //    apl->CreatePlanUniform(2500);
-    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace2W.csv");
+    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace1W.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
     //    p2ph.EnablePcap("tor",ft->GetAllEdges());
     //    p2ph.EnablePcap("ocs",OCS);
 
-    p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
+//    p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 
     Simulator::Stop(Seconds(1));
     Simulator::Run();
