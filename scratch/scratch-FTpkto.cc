@@ -52,7 +52,7 @@ int main(int argc,char* argv[])
     //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
     //    FatTreeHelper* ft = new FatTreeHelper(10);
-    FatTreeHelper* ft = new FatTreeHelper(12);
+    FatTreeHelper* ft = new FatTreeHelper(8);
     ft->Create(false);
 //    uint32_t  queuenumber = 4;
 //    NodeContainer OCS;
@@ -68,7 +68,7 @@ int main(int argc,char* argv[])
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
     //    apl->CreatePlanUniform(2500);
-    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace1W.csv");
+    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_data4W.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
