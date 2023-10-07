@@ -42,7 +42,7 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(false));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
-    Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
+    Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(true));
     ns3::RngSeedManager::SetSeed(1530);
     ns3::RngSeedManager::SetRun(7);
     FatTreeHelper* ft = new FatTreeHelper(6);
@@ -61,7 +61,7 @@ int main(int argc,char* argv[])
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
 //    apl->CreatePlanUniform(2500);
-    apl->CreatePlanFromTrace("./FlowTrace_data4W.csv");
+    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_data1W.csv");
 //    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),1,10001,10240*1024, Seconds(0.000520));
 
     AsciiTraceHelper ascii;

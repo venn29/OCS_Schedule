@@ -106,9 +106,10 @@ Ipv4SingleEPSRouting::RouteInput(Ptr<const Packet> p,
     
     OcsTag metaData;
     bool tag_found = packet->RemovePacketTag(metaData);
-    uint32_t size = metaData.GetLeftSize();
-        if(!tag_found)
+    if(!tag_found)
         return false;
+    uint32_t size = metaData.GetLeftSize();
+
 
     if(size < 500)
         return false;

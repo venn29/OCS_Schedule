@@ -15,35 +15,35 @@ class Flow:
         self.dst = dst
         self.srcint = int(ipaddress.ip_address(self.src))
         self.dstpint = int(ipaddress.ip_address(self.dst))
-        self.srcport = srcport
-        self.dstport = dstport
+        self.srcport = int(srcport)
+        self.dstport = int(dstport)
         #elephant flow
-        if(dstport>= 10000 and dstport < 20000):
+        if(self.dstport>= 10000 and self.dstport < 20000):
             self.flowtype = 1
         #mouse flow
-        elif ( dstport >= 20000 and dstport <= 45000):
+        else: 
             self.flowtype = 2
-        #acks
-        else:
-            self.flowtype = 0
         self.throughputlist = [0]*unitnum
         self.goodputacklist = [0]*unitnum
-        self.goodputoutlist = [0]*unitnum
         self.interval = interval
-    
-    def addpacket(self,time,length,seq,ack):
+        self.goodputlast = 0    
+
+    def AddDataPacket(self,time,length,seq,ack):
         #goodput
-        if(self.flowtype == 0):
-            unit = int(time/self.interval)
-            if self.goodputacklist[unit] < ack:
-                self.goodputacklist[unit] = ack
-        else:
-            unit = int(time/self.interval)
-            self.throughputlist[unit]+=length
-            if(ack>1 and seq >1):
-                self.lastime = time
-                self.duration = self.lastime - self.startime
-                self.finished = True
+        unit = int(time/self.interval)
+        self.throughputlist[unit]+=length
+    
+    def AddAckPacket(self,time,length,seq,ack):
+        unit = int(time/self.interval)
+        if self.goodputacklist[unit] < ack:
+            self.goodputacklist[unit] = ack
+            self.goodputlast = ack
+            self.lastime = time
+     
+    def FinalPacket(self,time,length,seq,ack):
+        self.lastime = time
+        self.duration = self.lastime - self.startime
+        self.finished = True
 
     def goodputfinal(self):
         lenthg = len(self.goodputacklist)
@@ -88,8 +88,8 @@ CsvPath = "./Tscsv"
 # not have been implemented now 
 
 #unit: Ns
-interval = 12740000  
-totaltime = 10000000000
+interval = 260000  
+totaltime = 1000000000
 time_unit_num = int(totaltime/interval)+1
 flows = {}
 for root,ds,fs in os.walk(CsvPath):
@@ -103,21 +103,43 @@ for root,ds,fs in os.walk(CsvPath):
                 dst = row[3]
                 srcport = row[4]
                 dstport = row[5]
-                length = row[6]
-                seq = row[7]
-                ack = row[8]
-                flowid = nodenum+dstport
+                length = int(row[6])
+                seq = int(row[7])
+                ack = int(row[8])
                 
-                flowidint = int(flowid)
-                if(flowidint in flows):
-                    flowget = flows[flowidint]
-                    flowget.addpacket(time,int(length),int(seq),int(ack))
-                else:
+                #flow start, SYN 
+                if(seq == 0 and ack ==0):
+                    flowid = nodenum+dstport
+                    flowidint = int(flowid)
                     srcportint = int(srcport)
                     dstportint = int(dstport)
                     lengthint = int(length)
                     newflow = Flow(flowidint,src,dst,srcportint,dstportint,time,time_unit_num,interval)
-                    flows[flowidint] = newflow
+                    flows[flowidint] = newflow                
+                #SYN and ACK
+                elif(ack == 1 and seq ==0):
+                    continue
+                #data packet
+                elif (ack == 1 and seq > 0):
+                    flowid = nodenum+dstport
+                    flowidint = int(flowid)
+                    flowget = flows[flowidint]
+                    flowget.AddDataPacket(time,length,seq,ack)
+                #ack packet
+                elif (ack > 1 and seq == 1):
+                    flowid = nodenum+srcport
+                    flowidint = int(flowid)
+                    flowget = flows[flowidint]
+                    flowget.AddAckPacket(time,length,seq,ack)
+                #final data packet
+                elif (ack>1 and seq >1):
+                    flowid = nodenum+dstport
+                    flowidint = int(flowid)
+                    if(flowidint not in flows.keys()):
+                        continue
+                    flowget = flows[flowidint]
+                    flowget.FinalPacket(time,length,seq,ack)
+
 #output
 with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
     csvlongwriter = csv.writer(csvlongoutfile)
@@ -125,10 +147,10 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
     csvsmallwriter = csv.writer(csvsmallfile)
     csvackfile = open("FlowGoodput.csv","w",newline='')
     csvackwriter = csv.writer(csvackfile)
+    csvsmallackfile = open("SmallFlowGoodput.csv","w",newline='')
+    csvsmallackwriter = csv.writer(csvsmallackfile)
     vls = sorted(flows.values(),key = functools.cmp_to_key(cmp))
     for flow in vls:
-        if flow.flowtype == 0:
-            pass
         if(flow.flowtype == 1):
             temp = []
             temp.append(flow.src)
@@ -154,9 +176,19 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
             csvsmallwriter.writerow(temp)
     vls2 = sorted(flows.values(),key = functools.cmp_to_key(cmp2))
     for flow in vls2:
-        if flow.flowtype == 0:
-            if int(flow.srcport) > 20000:
-                continue
+        if int(flow.dstport) > 20000:
+            temp = []
+            temp.append(flow.src)
+            temp.append(flow.dst)
+            temp.append(flow.srcport)
+            temp.append(flow.dstport)
+            temp.append(flow.startime)
+            temp.append(flow.lastime)
+            temp.append(flow.duration)
+            temp.append(flow.finished)
+            temp.append(flow.goodputlast)
+            csvsmallackwriter.writerow(temp)
+        else:
             flow.goodputfinal()
             temp = []
             temp.append(flow.src)
@@ -168,4 +200,4 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
             temp.append(flow.duration)
             temp.append(flow.finished)
             temp = temp + flow.goodputacklist
-            csvackwriter.writerow(temp)
+            csvackwriter.writerow(temp)    

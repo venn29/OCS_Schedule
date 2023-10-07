@@ -152,11 +152,11 @@ NewBulkSendApplication::StartApplication() // Called at time specified by Start
     {
         m_socket = Socket::CreateSocket(GetNode(), m_tid);
 
-        InetSocketAddress transport = InetSocketAddress::ConvertFrom(m_peer);
-        std::stringstream ss;
-        ss<<transport.GetPort();
-        if(transport.GetPort() < 20000)
-            m_socket->TraceConnect("CongestionWindow",ss.str(), MakeCallback(&CwndChange));
+         InetSocketAddress transport = InetSocketAddress::ConvertFrom(m_peer);
+         std::stringstream ss;
+         ss<<transport.GetPort();
+         if(transport.GetPort() < 20000)
+             m_socket->TraceConnect("CongestionWindow",ss.str(), MakeCallback(&CwndChange));
 //
 
         int ret = -1;

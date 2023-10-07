@@ -35,20 +35,20 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(17680)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(11960)));
 //    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(7280)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(false));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
-    Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
+    Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpLp::GetTypeId()));
     Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
     ns3::RngSeedManager::SetSeed(1530);
     ns3::RngSeedManager::SetRun(7);
 //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
 //    FatTreeHelper* ft = new FatTreeHelper(10);
-    FatTreeHelper* ft = new FatTreeHelper(12);
+    FatTreeHelper* ft = new FatTreeHelper(10);
     ft->Create(true);
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
@@ -60,11 +60,11 @@ int main(int argc,char* argv[])
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000780));
+    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000520));
     apl->AddClientSet(ft->GetNodeInEdge(0));
     apl->AddServerSet(ft->GetNodeInEdge(6));
 //    apl->CreatePlanUniform(2500);
-    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_data4W.csv");
+//    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace56_data2W.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));

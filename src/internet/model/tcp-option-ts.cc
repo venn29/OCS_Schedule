@@ -151,7 +151,6 @@ TcpOptionTS::ElapsedTimeFromTsValue(uint32_t echoTime)
     {
         ret = MilliSeconds(now32 - echoTime);
     }
-
     return ret;
 }
 
