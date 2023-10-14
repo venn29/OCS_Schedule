@@ -1,9 +1,0 @@
-[0/2] Re-checking globbed directories...
-[1/7] Building CXX object src/ocs/CMakeFiles/libocs-obj.dir/model/route-schedule.cc.o
-[2/7] Building CXX object scratch/CMakeFiles/scratch_scratch-FTsinglequeue.dir/scratch-FTsinglequeue.cc.o
-[3/7] Building CXX object src/ocs/CMakeFiles/libocs-obj.dir/model/Ipv4EpsRouting.cc.o
-[4/7] Building CXX object src/ocs/CMakeFiles/libocs-obj.dir/model/new-bulk-send-application.cc.o
-[5/7] Building CXX object src/ocs/CMakeFiles/libocs-obj.dir/helper/FatTreeHelper.cc.o
-[6/7] Linking CXX shared library /home/venn/ns-allinone-3.38/ns-3.38/build/lib/libns3.38-ocs-relwithdebinfo.so
-[7/7] Linking CXX executable /home/venn/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-scratch-FTsinglequeue-relwithdebinfo
-create 5001 flows
