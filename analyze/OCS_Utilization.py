@@ -13,17 +13,17 @@ class DeviceUtil:
         self.utils = [i/self.daylen for i in self.worktimes]
 
 
-totaltime = 1000000000   #this is 10 second,unit is ns
+totaltime = 100000000   #this is 10 second,unit is ns
 daylen = 240000
 daynightlen = 260000
-time_units = int(totaltime/daynightlen)
+time_units = int(totaltime/daynightlen)+1
 print(time_units)
-devicenum = 8
+devicenum = 32
 Devices = []
 for i in range(0,devicenum):
     Devices.append(DeviceUtil(i,time_units,daylen,daynightlen))
 pkt_lenth = 1500
-ocs_transfertime = 200
+ocs_transfertime = 150
 with open('../ocs.tr','r') as f:
     for line in f.readlines():
         datas = line.split()
@@ -35,7 +35,7 @@ with open('../ocs.tr','r') as f:
             infos = datas[2].split('/')
             deviceno = int(infos[4])
             device_temp = Devices[deviceno]
-            device_temp.worktimes[timeunit_no] += 200
+            device_temp.worktimes[timeunit_no] += 150
 for dev in Devices:
     dev.CalculateUtil()
 

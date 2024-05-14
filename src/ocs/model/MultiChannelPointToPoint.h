@@ -65,9 +65,11 @@ class MultiChannelPointToPointDevice : public PointToPointNetDevice
         this->working_queue_idx = (this->working_queue_idx+1) % this->queue_number;
         return this->working_queue_idx;
     }
-    void IntoNight(){
-        this->working = false;
-    }
+
+    void IntoNight();
+//    void IntoNight(){
+//        this->working = false;
+//    }
     void BeginWork();
 
     void RecordQueueBuffer(std::ofstream* ostream);

@@ -22,7 +22,8 @@ class FlowGenerator:
             intervalue = -math.log(random.random()) / (self.flow_per_second*1.0 / 1e9)
             intertime = int(intervalue)
             timenow += intertime
-            fsize = self.flowsize.GetFlowsize()
+            # fsize = self.flowsize.GetFlowsize()
+            fsize = 2000
             self.RegisterFlow(timenow,fsize,writer,x%self.hostnum)
             x += 1
             totalbyte += fsize

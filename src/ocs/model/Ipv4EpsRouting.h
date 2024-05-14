@@ -111,7 +111,7 @@ class Flow : public Object
 
     void DropPacket(){
         this->enqueued = false;
-        if(sentp != 0 )
+        if(sentp != 0 )         //because when the day ends, the first pkt will set the sentp to zero, if we do not protect, the prev_sent must be zero
 	        this->prev_sent = this->sentp;
         if(prev_sent < this->sentp_thresh)
             this->warmup_thresh = this->initial_warmup_thresh*2;
@@ -155,6 +155,9 @@ class Flow : public Object
     uint32_t prev_sent;
     //sentp thresh
     uint32_t sentp_thresh;
+    //lost flag
+    bool lostflag = false;
+
     std::ofstream fout;
 };
 

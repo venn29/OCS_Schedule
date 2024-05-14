@@ -32,14 +32,14 @@ int main(int argc,char* argv[])
 {
     CommandLine cmd;
     cmd.Parse(argc,argv);
-    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
+    Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1448));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
     Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(3640)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
 //    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
-    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(false));
+    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
     Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
     Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(true));
@@ -51,17 +51,25 @@ int main(int argc,char* argv[])
     NodeContainer OCS;
     OCS.Create(1);
     Ptr<Node> ocsnode = OCS.Get(0);
-    QueueSize queueSize =  QueueSize("1200KB");
+    QueueSize queueSize =  QueueSize("3200KB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
     ft->SetOcsSingle(OCSLinks,ocsnode);
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,302400*1024, Seconds(0.000520));
-    apl->AddClientSet(ft->GetNodeInEdge(0));
-    apl->AddServerSet(ft->GetNodeInEdge(6));
+    double starttime = 0.000520;
+    double addperu = 0.000260;
+    int port = 10001;
+    int portadd = 100;
+    for(int i = 6;i<6+18;i++){
+        apl->LongFlowPlan(ft->GetNodeInEdge(i%18),ft->GetNodeInEdge(0),80,port,102400*1024, Seconds(starttime));
+        starttime += addperu;
+        port += portadd;
+    }
+    //    apl->AddClientSet(ft->GetNodeInEdge(0));
+//    apl->AddServerSet(ft->GetNodeInEdge(6));
 //    apl->CreatePlanUniform(2500);
-    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_data1W.csv");
+//    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace_data1W.csv");
 //    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),1,10001,10240*1024, Seconds(0.000520));
 
     AsciiTraceHelper ascii;
@@ -71,7 +79,7 @@ int main(int argc,char* argv[])
 
     p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 
-    Simulator::Stop(Seconds(1));
+    Simulator::Stop(Seconds(0.1));
     Simulator::Run();
     Simulator::Destroy();
     return 0;

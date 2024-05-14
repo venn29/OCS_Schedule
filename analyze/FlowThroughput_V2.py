@@ -27,11 +27,13 @@ class Flow:
         self.goodputacklist = [0]*unitnum
         self.interval = interval
         self.goodputlast = 0    
+        self.throughputsum = 0
 
     def AddDataPacket(self,time,length,seq,ack):
         #goodput
         unit = int(time/self.interval)
         self.throughputlist[unit]+=length
+        self.throughputsum += length
     
     def AddAckPacket(self,time,length,seq,ack):
         unit = int(time/self.interval)
@@ -88,8 +90,9 @@ CsvPath = "./Tscsv"
 # not have been implemented now 
 
 #unit: Ns
+mintime = 13000000
 interval = 260000  
-totaltime = 1000000000
+totaltime = 100000000
 time_unit_num = int(totaltime/interval)+1
 flows = {}
 for root,ds,fs in os.walk(CsvPath):
@@ -120,6 +123,9 @@ for root,ds,fs in os.walk(CsvPath):
                 elif(ack == 1 and seq ==0):
                     continue
                 #data packet
+
+                if time<mintime:
+                    continue
                 elif (ack == 1 and seq > 0):
                     flowid = nodenum+dstport
                     flowidint = int(flowid)
@@ -161,6 +167,7 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
             temp.append(flow.lastime)
             temp.append(flow.duration)
             temp.append(flow.finished)
+            temp.append(flow.throughputsum)
             temp = temp + flow.throughputlist
             csvlongwriter.writerow(temp)
         elif flow.flowtype == 2:
@@ -173,6 +180,7 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
             temp.append(flow.lastime)
             temp.append(flow.duration)
             temp.append(flow.finished)
+            temp.append(flow.throughputsum)
             csvsmallwriter.writerow(temp)
     vls2 = sorted(flows.values(),key = functools.cmp_to_key(cmp2))
     for flow in vls2:
@@ -199,5 +207,6 @@ with open("LongFlowThroughput.csv","w",newline='') as csvlongoutfile:
             temp.append(flow.lastime)
             temp.append(flow.duration)
             temp.append(flow.finished)
+            temp.append(flow.goodputlast)
             temp = temp + flow.goodputacklist
             csvackwriter.writerow(temp)    

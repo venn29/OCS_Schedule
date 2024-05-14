@@ -45,7 +45,7 @@ FatTreeHelper::SetSWnum()
     this->podnum2 = this->podnum/2;
     agginpodnum = podnum2;
     edgeinpodnum = podnum2;
-    nodeinedgenum = 64; //temporary
+    nodeinedgenum = 100; //temporary
 
     nodeinpodnum = nodeinedgenum * edgeinpodnum;
 
@@ -209,9 +209,9 @@ FatTreeHelper::SetOcsSingle(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw )
 {
     InternetStackHelper stack;
     Ipv4AddressHelper address;
-    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("60Gbps"));
+    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("80Gbps"));
     OCSLinkhelper.SetChannelAttribute("Delay", StringValue("8us"));
-    OCSLinkhelper.SetMultiDeviceRate("60Gbps");
+    OCSLinkhelper.SetMultiDeviceRate("80Gbps");
     OCSLinkhelper.SetEnableFlowControl(false);
     for(int edgen=0;edgen<this->edgeswnum;edgen++)
     {
@@ -265,9 +265,9 @@ FatTreeHelper::SetOcsMulti(MultiDeviceHelper OCSLinkhelper,Ptr<Node> ocssw,std::
 {
     InternetStackHelper stack;
     Ipv4AddressHelper address;
-    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("60Gbps"));
+    OCSLinkhelper.SetDeviceAttribute("DataRate", StringValue("80Gbps"));
     OCSLinkhelper.SetChannelAttribute("Delay", StringValue("8us"));
-    OCSLinkhelper.SetMultiDeviceRate("60Gbps");
+    OCSLinkhelper.SetMultiDeviceRate("80Gbps");
     OCSLinkhelper.SetEnableFlowControl(false);
     for(int edgen=0;edgen<this->edgeswnum;edgen++)
     {

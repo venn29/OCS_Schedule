@@ -46,6 +46,7 @@ class FatTreeHelper
 
     NodeContainer GetNodeInEdge(int edgeindex);
     NodeContainer GetAllEdges(){return this->edgesw;}
+    NodeContainer GetAllaggs() {return this->aggrsw;}
 
     void SetPrioQueueDisc();
 

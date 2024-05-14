@@ -88,6 +88,9 @@ MultiChannelPointToPointDevice::Send(Ptr<ns3::Packet> packet, const ns3::Address
         }
         return true;
     }
+//    else{
+////        std::cout<<"queue max at "<<ns3::Simulator::Now().GetSeconds()<<" at queue"<<queue_tgt_idx<<"when working queue is"<<working_queue_idx<<std::endl;
+//    }
     return false;
 }
 
@@ -146,6 +149,16 @@ MultiChannelPointToPointDevice::BeginWork()
         return;
     }
     TransmitStart(p);
+}
+
+void
+MultiChannelPointToPointDevice::IntoNight(){
+    this->working = false;
+    auto working_queue = this->multi_queues[(this->working_queue_idx-1)%4];
+    Ptr<Packet> p ;
+    do{
+       p = working_queue->Remove();
+    } while (p != nullptr);
 }
 
 void

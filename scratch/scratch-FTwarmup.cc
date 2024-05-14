@@ -35,34 +35,58 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1458));
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(11960)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(3900)));
 //    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(7280)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
-    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(false));
+    Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
     Config::SetDefault("ns3::TcpSocket::InitialCwnd",UintegerValue(1));
-    Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpLp::GetTypeId()));
+    Config::SetDefault("ns3::TcpL4Protocol::SocketType",TypeIdValue(TcpNewReno::GetTypeId()));
     Config::SetDefault("ns3::TcpSocketBase::Timestamp",BooleanValue(false));
     ns3::RngSeedManager::SetSeed(1530);
     ns3::RngSeedManager::SetRun(7);
 //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
 //    FatTreeHelper* ft = new FatTreeHelper(10);
-    FatTreeHelper* ft = new FatTreeHelper(10);
+    FatTreeHelper* ft = new FatTreeHelper(6);
     ft->Create(true);
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
     OCS.Create(1);
     Ptr<Node> ocsnode = OCS.Get(0);
-    QueueSize queueSize =  QueueSize("400kB");
+    QueueSize queueSize =  QueueSize("1000kB");
     MultiDeviceHelper OCSLinks =  MultiDeviceHelper(queuenumber,ocsnode,queueSize);
     ft->SetOcsMulti(OCSLinks,ocsnode,"warmup");
 
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    apl->LongFlowPlan(ft->GetNodeInEdge(6),ft->GetNodeInEdge(0),64,10001,102400*1024, Seconds(0.000520));
-    apl->AddClientSet(ft->GetNodeInEdge(0));
-    apl->AddServerSet(ft->GetNodeInEdge(6));
+    double starttime = 0.000520;
+    double addperu = 0.000260;
+    int port = 10001;
+    int portadd = 100;
+    for(int i = 6;i<6+18;i++){
+        apl->LongFlowPlan(ft->GetNodeInEdge((i)%18),ft->GetNodeInEdge(0),80,port,102400*1024, Seconds(starttime));
+        starttime += addperu;
+        port += portadd;
+//
+//        for(int j=0;j<4;j++){
+//            apl->LongFlowPlan(ft->GetNodeInEdge((i+j)%18),ft->GetNodeInEdge(0),90,port,102400*1024, Seconds(starttime));
+//            starttime += addperu;
+//            port += portadd;
+//        }
+//        starttime += addperu*4;
+//        port += portadd*4;
+    }
+//    apl->LongFlowPlan(ft->GetNodeInEdge(11),ft->GetNodeInEdge(0),80,10001,102400*1024, Seconds(0.001820));
+//    apl->LongFlowPlan(ft->GetNodeInEdge(7),ft->GetNodeInEdge(0),90,11001,102400*1024, Seconds(0.000780));
+//    apl->LongFlowPlan(ft->GetNodeInEdge(1),ft->GetNodeInEdge(0),90,12001,102400*1024, Seconds(0.001040));
+//    apl->LongFlowPlan(ft->GetNodeInEdge(2),ft->GetNodeInEdge(0),90,13001,102400*1024, Seconds(0.001300));
+//    apl->LongFlowPlan(ft->GetNodeInEdge(3),ft->GetNodeInEdge(0),90,14001,102400*1024, Seconds(0.001560));
+//    apl->LongFlowPlan(ft->GetNodeInEdge(4),ft->GetNodeInEdge(0),90,15001,102400*1024, Seconds(0.001820));
+//    apl->LongFlowPlan(ft->GetNodeInEdge(5),ft->GetNodeInEdge(0),90,16001,102400*1024, Seconds(0.002080));
+
+    //    apl->AddClientSet(ft->GetNodeInEdge(0));
+//    apl->AddServerSet(ft->GetNodeInEdge(6));
 //    apl->CreatePlanUniform(2500);
 //    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace56_data2W.csv");
     AsciiTraceHelper ascii;
@@ -70,12 +94,16 @@ int main(int argc,char* argv[])
     p2ph.EnablePcap("HO0",ft->GetNodeInEdge(0));
 
     p2ph.EnablePcap("HO6",ft->GetNodeInEdge(6));
-//    p2ph.EnablePcap("tor",ft->GetAllEdges());
-//    p2ph.EnablePcap("ocs",OCS);
+    p2ph.EnablePcap("tor",ft->GetAllEdges());
+
+    p2ph.EnablePcap("agg",ft->GetAllEdges());
+    p2ph.EnablePcap("ocs",OCS);
 
     p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 
-    Simulator::Stop(Seconds(1));
+
+    std::cout<<"start"<<std::endl;
+    Simulator::Stop(Seconds(0.1));
     Simulator::Run();
     Simulator::Destroy();
     return 0;
