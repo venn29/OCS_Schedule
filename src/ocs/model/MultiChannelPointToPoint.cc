@@ -154,6 +154,8 @@ MultiChannelPointToPointDevice::BeginWork()
 void
 MultiChannelPointToPointDevice::IntoNight(){
     this->working = false;
+    if(this->queue_number == 1)
+        return;
     auto working_queue = this->multi_queues[(this->working_queue_idx-1)%4];
     Ptr<Packet> p ;
     do{
