@@ -18,7 +18,7 @@ daylen = 240000
 daynightlen = 260000
 time_units = int(totaltime/daynightlen)+1
 print(time_units)
-devicenum = 32
+devicenum = 72
 Devices = []
 for i in range(0,devicenum):
     Devices.append(DeviceUtil(i,time_units,daylen,daynightlen))
