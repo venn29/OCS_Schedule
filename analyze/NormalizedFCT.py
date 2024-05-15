@@ -20,10 +20,10 @@ class Flow:
         else:
             if self.totalGP == 0:
             	self.NormalizedFCT = -1
-            	return
-            finishtime = self.duration*GP*1.0/self.totalGP
-            self.NormalizedFCT = finishtime/fct
-            self.duration = finishtime
+            else:
+                finishtime = self.duration*GP*1.0/self.totalGP
+                self.NormalizedFCT = finishtime/fct
+                self.duration = finishtime
 
 baseflows = {}
 resultflows = {}

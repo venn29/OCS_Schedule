@@ -23,7 +23,7 @@ class FlowGenerator:
             intertime = int(intervalue)
             timenow += intertime
             # fsize = self.flowsize.GetFlowsize()
-            fsize = 2000
+            fsize = 500
             self.RegisterFlow(timenow,fsize,writer,x%self.hostnum)
             x += 1
             totalbyte += fsize

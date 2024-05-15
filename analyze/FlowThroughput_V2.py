@@ -90,7 +90,7 @@ CsvPath = "./Tscsv"
 # not have been implemented now 
 
 #unit: Ns
-mintime = 13000000
+mintime = 0
 interval = 260000  
 totaltime = 100000000
 time_unit_num = int(totaltime/interval)+1
@@ -112,13 +112,14 @@ for root,ds,fs in os.walk(CsvPath):
                 
                 #flow start, SYN 
                 if(seq == 0 and ack ==0):
-                    flowid = nodenum+dstport
-                    flowidint = int(flowid)
+                    # flowid = nodenum+dstport
+                    flowid = dst+dstport
+                    # flowidint = int(flowid)
                     srcportint = int(srcport)
                     dstportint = int(dstport)
                     lengthint = int(length)
-                    newflow = Flow(flowidint,src,dst,srcportint,dstportint,time,time_unit_num,interval)
-                    flows[flowidint] = newflow                
+                    newflow = Flow(flowid,src,dst,srcportint,dstportint,time,time_unit_num,interval)
+                    flows[flowid] = newflow                
                 #SYN and ACK
                 elif(ack == 1 and seq ==0):
                     continue
@@ -127,23 +128,23 @@ for root,ds,fs in os.walk(CsvPath):
                 if time<mintime:
                     continue
                 elif (ack == 1 and seq > 0):
-                    flowid = nodenum+dstport
-                    flowidint = int(flowid)
-                    flowget = flows[flowidint]
+                    flowid = dst+dstport
+                    # flowidint = int(flowid)
+                    flowget = flows[flowid]
                     flowget.AddDataPacket(time,length,seq,ack)
                 #ack packet
                 elif (ack > 1 and seq == 1):
-                    flowid = nodenum+srcport
-                    flowidint = int(flowid)
-                    flowget = flows[flowidint]
+                    flowid = src+srcport
+                    # flowidint = int(flowid)
+                    flowget = flows[flowid]
                     flowget.AddAckPacket(time,length,seq,ack)
                 #final data packet
                 elif (ack>1 and seq >1):
-                    flowid = nodenum+dstport
-                    flowidint = int(flowid)
-                    if(flowidint not in flows.keys()):
+                    flowid = dst+dstport
+                    # flowidint = int(flowid)
+                    if(flowid not in flows.keys()):
                         continue
-                    flowget = flows[flowidint]
+                    flowget = flows[flowid]
                     flowget.FinalPacket(time,length,seq,ack)
 
 #output
