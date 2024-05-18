@@ -39,7 +39,7 @@ int main(int argc,char* argv[])
     Config::SetDefault("ns3::TcpSocket::DelAckCount",UintegerValue(1));
     Config::SetDefault("ns3::RttEstimator::InitialEstimation",TimeValue(MicroSeconds(100)));
 //    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(2000)));
-    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(20480)));
+    Config::SetDefault("ns3::TcpSocketBase::MinRto",TimeValue(MicroSeconds(12840)));
     Config::SetDefault("ns3::TcpSocketBase::ClockGranularity",TimeValue(MicroSeconds(1)));
     Config::SetDefault("ns3::TcpSocket::DataRetries",UintegerValue(100));
     Config::SetDefault("ns3::Ipv4GlobalRouting::RandomEcmpRouting",BooleanValue(true));
@@ -63,7 +63,7 @@ int main(int argc,char* argv[])
     ft->SetOcsMulti(OCSLinks,ocsnode,"nobypass");
 
     Ptr<AppPlanner> apl = new AppPlanner();
-    double starttime = 0.000520;
+    double starttime = 0.001300;
     double addperu = 0.000260;
     int port = 10001;
     int portadd = 100;
@@ -73,15 +73,15 @@ int main(int argc,char* argv[])
         port += portadd;
     }
 
-    Ptr<AppPlanner> aplmice[71];
-    for(int i=0;i<49;i++){
-        Ptr<AppPlanner> aplt = new AppPlanner;
-        aplmice[i] = aplt;
-        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
-        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
-        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
-        std::cout<<"created "<<i+1<<std::endl;
-    }
+//    Ptr<AppPlanner> aplmice[71];
+//    for(int i=0;i<49;i++){
+//        Ptr<AppPlanner> aplt = new AppPlanner;
+//        aplmice[i] = aplt;
+//        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
+//        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
+//        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
+//        std::cout<<"created "<<i+1<<std::endl;
+//    }
 //    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;

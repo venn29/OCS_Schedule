@@ -237,8 +237,18 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     if(!pflow)
         pflow = this->AddUpFlow(ipHeader.GetSource(),ipHeader.GetDestination(),srcport,dstport,protocal);
 
+
+
     //big flow packets of other destinations, drop
     if(q_idx<0 || q_idx >= queue_number){
+        if(pflow->GetLostFlag())
+            return false;
+        if(ns3::Simulator::Now().GetSeconds() - pflow->GetDroptime() >=0.000520 &&pflow->GetDroptime()!=0)
+        {
+            pflow->SetLostFlag(true);
+//            std::cout<<"flow"<<pflow->Getdstport()<<",now "<<ns3::Simulator::Now().GetSeconds()<<", drop time "<<pflow->GetDroptime()<<std::endl;
+            return false;
+        }
         NS_LOG_LOGIC("Out of queue number");
         pflow->DropPacket();
         ecb(p,ipHeader,Socket::SOCKET_ERRNO_LAST);
@@ -280,7 +290,8 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     //todo
 
     pflow->ReceiveSequence();
-
+    pflow->SetLostFlag(false);
+    pflow->ResetDropTime();
     metaData.SetQueueIdx(q_idx);
     packet->AddPacketTag(metaData);
     ucb(rtentry,packet,ipHeader);

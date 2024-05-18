@@ -112,7 +112,10 @@ class Flow : public Object
     void DropPacket(){
         this->enqueued = false;
         if(sentp != 0 )         //because when the day ends, the first pkt will set the sentp to zero, if we do not protect, the prev_sent must be zero
-	        this->prev_sent = this->sentp;
+        {
+            this->prev_sent = this->sentp;
+            this->droptime = ns3::Simulator::Now().GetSeconds();
+        }
         if(prev_sent < this->sentp_thresh)
             this->warmup_thresh = this->initial_warmup_thresh*2;
         else
@@ -139,6 +142,13 @@ class Flow : public Object
     void SetWarmupThresh(uint32_t wpth){this->warmup_thresh = wpth;}
     uint32_t GetWarmupThresh() {return this->warmup_thresh;}
 
+    double GetDroptime(){return this->droptime;}
+    void ResetDropTime(){this->droptime = 0;}
+
+    bool GetLostFlag(){return this->lostflag;}
+    void SetLostFlag(bool val) {this->lostflag = val;}
+    uint16_t Getdstport(){return this->destport;}
+
   private:
     Ipv4Address srcip,destip;
     uint16_t srcport,destport;
@@ -157,6 +167,7 @@ class Flow : public Object
     uint32_t sentp_thresh;
     //lost flag
     bool lostflag = false;
+    double droptime = 0;
 
     std::ofstream fout;
 };

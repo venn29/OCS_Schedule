@@ -154,7 +154,18 @@ MultiChannelPointToPointDevice::BeginWork()
 void
 MultiChannelPointToPointDevice::IntoNight(){
     this->working = false;
-    if(this->queue_number == 1)
+    if(this->queue_number == 1){
+        auto working_queue = this->multi_queues[0];
+        int cnt = 0;
+        Ptr<Packet> p ;
+        do{
+            p = working_queue->Remove();
+            cnt++;
+        } while (p != nullptr);
+//        std::cout<<"reserved pkt num "<<cnt<<std::endl;
+        return;
+    }
+    if(queue_number>4)
         return;
     auto working_queue = this->multi_queues[(this->working_queue_idx-1)%4];
     Ptr<Packet> p ;

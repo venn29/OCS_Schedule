@@ -3,13 +3,16 @@ import csv
 import random
 import math
 
+# 70.56% = 3000 flows per second per dest
+
+
 class FlowGenerator:
     def __init__(self) -> None:
         self.flowsize = Flowdistribution_Datamining.FlowSizeDis()
         self.path = "./FlowTrace_data.csv"
         self.endtime = 1e9
-        self.flow_per_second = 100000
-        self.hostnum = 64
+        self.flow_per_second = 1500
+        self.hostnum = 100
         random.seed(15078)
     
     def randomset(self,seed):
@@ -29,7 +32,7 @@ class FlowGenerator:
             intertime = int(intervalue)
             timenow += intertime
             # fsize = self.flowsize.GetFlowsize()
-            fsize = 50000
+            fsize = 30000
             self.RegisterFlow(timenow,fsize,writer,x%self.hostnum)
             x += 1
             totalbyte += fsize
