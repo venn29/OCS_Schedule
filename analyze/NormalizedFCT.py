@@ -6,7 +6,8 @@ OutputFile = './NormalizedFCTs.csv'
 statisticFile = 'NormalFCTStatistics.csv'
 
 class Flow:
-    def __init__(self,dstport,duration,totalGP,finished) -> None:
+    def __init__(self,dest,dstport,duration,totalGP,finished) -> None:
+        self.dest = dest
         self.dstport = dstport
         self.duration = duration
         self.totalGP = totalGP
@@ -32,38 +33,44 @@ FCTs = []
 with open(BaseFCTPath,'r') as basefile:
     reader = csv.reader(basefile)
     for row in reader:
-        dstport = int(row[3])
+        dstport = row[3]
+        dstportint = int(row[3])
+        dest = row[1]
         startime = float(row[4])
         endtime = float(row[5])
         duration = float(row[6])
         finished = row[7]
         GoodPut = int(row[8])
+        flowid = dest+dstport
         if(finished == 'True'):
-            baseflows[dstport] = Flow(dstport,duration,GoodPut,True)
+            baseflows[flowid] = Flow(dest,dstportint,duration,GoodPut,True)
         else:
-            baseflows[dstport] = Flow(dstport,endtime-startime,GoodPut,False)
+            baseflows[flowid] = Flow(dest,dstportint,endtime-startime,GoodPut,False)
 
 with open(FCTResultPath,'r') as resultfile:
     reader = csv.reader(resultfile)
     for row in reader:
-        dstport = int(row[3])
+        dstportint = int(row[3])
+        dstport = row[3]
+        dest = row[1]
         startime = float(row[4])
         endtime = float(row[5])
         duration = float(row[6])
         finished = row[7]
         GoodPut = int(row[8])
+        flowid = dest+dstport
         if(finished == 'True'):
-            resultflows[dstport] = Flow(dstport,duration,GoodPut,True)
+            resultflows[flowid] = Flow(dest,dstportint,duration,GoodPut,True)
         else:
-            resultflows[dstport] = Flow(dstport,endtime-startime,GoodPut,False)
+            resultflows[flowid] = Flow(dest,dstportint,endtime-startime,GoodPut,False)
 
 outfile = open(OutputFile,'w',newline='')
 writer = csv.writer(outfile)
 
 for item in baseflows.items():
-    dstport = item[0]
+    flowid = item[0]
     baseflow = item[1]
-    resultflow = resultflows[dstport]
+    resultflow = resultflows[flowid]
     if(baseflow.finished == True):
         resultflow.NLFCT(baseflow.duration,baseflow.totalGP)
     if(resultflow.NormalizedFCT == -1):
@@ -71,7 +78,9 @@ for item in baseflows.items():
     NLFCTs.append(resultflow.NormalizedFCT)
     FCTs.append(resultflow.duration)
     temp = []
-    temp.append(dstport)
+
+    temp.append(resultflow.dest)
+    temp.append(resultflow.dstport)
     temp.append(baseflow.duration)
     temp.append(baseflow.totalGP)
     temp.append(resultflow.duration)
