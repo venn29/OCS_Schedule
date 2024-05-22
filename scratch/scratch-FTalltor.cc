@@ -67,21 +67,23 @@ int main(int argc,char* argv[])
     double addperu = 0.000260;
     int port = 10001;
     int portadd = 100;
-    for(int i = 6;i<6+49;i++){
-        apl->LongFlowPlan(ft->GetNodeInEdge((i)%49),ft->GetNodeInEdge(0),80,port,102400*1024, Seconds(starttime));
+    for(int i = 6;i<6+50;i++){
+        if(i == 0)
+            continue;
+        apl->LongFlowPlan(ft->GetNodeInEdge((i)%50),ft->GetNodeInEdge(0),80,port,102400*1024, Seconds(starttime));
         starttime += addperu;
         port += portadd;
     }
 
-//    Ptr<AppPlanner> aplmice[71];
-//    for(int i=0;i<49;i++){
-//        Ptr<AppPlanner> aplt = new AppPlanner;
-//        aplmice[i] = aplt;
-//        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
-//        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
-//        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
+    Ptr<AppPlanner> aplmice[71];
+    for(int i=0;i<49;i++){
+        Ptr<AppPlanner> aplt = new AppPlanner;
+        aplmice[i] = aplt;
+        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
+        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
+        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
 //        std::cout<<"created "<<i+1<<std::endl;
-//    }
+    }
 //    apl->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/FlowTrace.csv");
     AsciiTraceHelper ascii;
     PointToPointHelper p2ph;
@@ -91,7 +93,7 @@ int main(int argc,char* argv[])
 
     p2ph.EnableAscii(ascii.CreateFileStream("ocs.tr"),OCS);
 
-    Simulator::Stop(Seconds(0.1));
+    Simulator::Stop(Seconds(1));
     Simulator::Run();
     Simulator::Destroy();
     return 0;
