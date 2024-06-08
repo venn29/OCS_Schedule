@@ -18,7 +18,7 @@ AppPlanner::AppPlanner()
     :randomselecthost(CreateObject<UniformRandomVariable>()),
       randompoisson(CreateObject<UniformRandomVariable>()),
       flowthresh(1024*200),
-      smallportstart(20001),
+      smallportstart(30001),
       bigportstart(10001),
       hostpertor(16),
       endtime(Seconds(1)),
