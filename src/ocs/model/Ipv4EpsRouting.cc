@@ -258,7 +258,6 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     //bypass strategy
     if(q_idx != this->working_queue_index)
     {
-        pflow->SetLostFlag(false);
 //        bool flow_enqueued = SearchFlowEnqueued(ipHeader.GetSource(),ipHeader.GetDestination(),srcport,dstport,protocal,q_idx);
         bool flow_enqueued = pflow->GetEnqueueStatus();
         double queue_space = GetQueueSpace(q_idx);
