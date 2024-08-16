@@ -47,8 +47,8 @@ int main(int argc,char* argv[])
     ns3::RngSeedManager::SetRun(7);
 //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
-//    FatTreeHelper* ft = new FatTreeHelper(10);
     FatTreeHelper* ft = new FatTreeHelper(10);
+//    FatTreeHelper* ft = new FatTreeHelper(6);
     ft->Create(true);
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
@@ -64,8 +64,10 @@ int main(int argc,char* argv[])
     double addperu = 0.000260;
     int port = 10001;
     int portadd = 100;
-    for(int i = 6;i<6+49;i++){
-        apl->LongFlowPlan(ft->GetNodeInEdge((i)%49),ft->GetNodeInEdge(0),80,port,102400*1024, Seconds(starttime));
+    for(int i = 6;i<6+50;i++){
+        if(i == 0)
+            continue;
+        apl->LongFlowPlan(ft->GetNodeInEdge((i)%50),ft->GetNodeInEdge(0),80,port,102400*1024, Seconds(starttime));
         starttime += addperu;
         port += portadd;
     }

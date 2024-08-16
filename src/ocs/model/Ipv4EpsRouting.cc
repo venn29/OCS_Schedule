@@ -282,6 +282,8 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
                     
             }
         }
+        else
+            return false;
         if(!flow_enqueued){
             pflow->SetEnqueued();
         }
