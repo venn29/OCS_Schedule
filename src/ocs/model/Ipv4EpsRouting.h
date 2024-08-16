@@ -166,7 +166,7 @@ class Flow : public Object
     //sentp thresh
     uint32_t sentp_thresh;
     //lost flag
-    bool lostflag = false;
+    bool lostflag = true;
     double droptime = 0;
 
     std::ofstream fout;

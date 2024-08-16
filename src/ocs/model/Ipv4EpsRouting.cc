@@ -228,11 +228,17 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
 //    }
 
     if(!tag_found)
+    {
+//        std::cout<<"notag"<<std::endl;
         return false;
+    }
 
     if(size < this->mice_thresh)
+    {
+        std::cout<<"small"<<std::endl;
         return false;
-
+    }
+    //    std::cout<<"big"<<std::endl;
     Ptr<Flow> pflow = this->Getflow(Flow::HashPacket(ipHeader.GetSource(),ipHeader.GetDestination(),protocal,srcport,dstport));
     if(!pflow)
         pflow = this->AddUpFlow(ipHeader.GetSource(),ipHeader.GetDestination(),srcport,dstport,protocal);
@@ -258,6 +264,7 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     //bypass strategy
     if(q_idx != this->working_queue_index)
     {
+        pflow->SetLostFlag(false);
 //        bool flow_enqueued = SearchFlowEnqueued(ipHeader.GetSource(),ipHeader.GetDestination(),srcport,dstport,protocal,q_idx);
         bool flow_enqueued = pflow->GetEnqueueStatus();
         double queue_space = GetQueueSpace(q_idx);
