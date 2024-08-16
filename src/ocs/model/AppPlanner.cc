@@ -236,4 +236,41 @@ AppPlanner::LongFlowPlan(NodeContainer servernd, NodeContainer clientnd,int flow
     }
 }
 
+void
+AppPlanner::LongMiceFlowPlan(NodeContainer servernd, NodeContainer clientnd,int flownum, uint16_t port_start,uint32_t maxbytes,Time starttime)
+{
+    uint32_t servernodenum = servernd.GetN();
+    uint32_t clientnodenum = clientnd.GetN();
+    NS_ASSERT_MSG(servernodenum == clientnodenum, "Cluster to cluster servre number does not eqaul to client");
+    int flowcreated = 0;
+    uint16_t  port = port_start;
+    while (flowcreated < flownum)
+    {
+        //        ++port;
+        for(uint32_t j = 0; j < servernodenum;j++)
+        {
+            //node
+            Ptr<Node> server = servernd.Get(j);
+            Ptr<Node> client = clientnd.Get(j);
+            Ipv4Address serveripv4 = server->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
+            //app helper
+            BulkSendHelper senderapph("ns3::TcpSocketFactory",InetSocketAddress(serveripv4,port));
+            PacketSinkHelper receivapph("ns3::TcpSocketFactory",InetSocketAddress(Ipv4Address::GetAny(),port));
+            senderapph.SetAttribute("MaxBytes",UintegerValue(maxbytes));
+            senderapph.SetAttribute("SendSize", UintegerValue(uint32_t(1458)));
+            //app container
+            ApplicationContainer sendappc = senderapph.Install(client);
+            sendappc.Start(starttime);
+            ApplicationContainer receiveappc = receivapph.Install(server);
+            receiveappc.Start(starttime);
+            ++flowcreated;
+            ++port;
+            if(flowcreated >= flownum)
+                break;
+        }
+    }
+}
+
+
+
 }

@@ -47,8 +47,8 @@ int main(int argc,char* argv[])
     ns3::RngSeedManager::SetRun(7);
 //    LogComponentEnable("TcpSocketBase",LOG_LOGIC);
 
+//    FatTreeHelper* ft = new FatTreeHelper(10);
     FatTreeHelper* ft = new FatTreeHelper(10);
-//    FatTreeHelper* ft = new FatTreeHelper(6);
     ft->Create(true);
     uint32_t  queuenumber = 4;
     NodeContainer OCS;
@@ -72,15 +72,29 @@ int main(int argc,char* argv[])
         port += portadd;
     }
 
-    Ptr<AppPlanner> aplmice[71];
-    for(int i=0;i<49;i++){
-        Ptr<AppPlanner> aplt = new AppPlanner;
-        aplmice[i] = aplt;
-        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
-        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
-        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
-//        std::cout<<"created "<<i+1<<std::endl;
+    port = 17001;
+    portadd = 1;
+    starttime = 0.000520;
+    for(int i = 6;i<6+50;i++){
+        if(i == 0)
+            continue;
+        apl->LongMiceFlowPlan(ft->GetNodeInEdge((i)%50),ft->GetNodeInEdge(0),1,port,102400*1024, Seconds(starttime));
+
+        starttime += addperu;
+        port += portadd;
     }
+//    apl->LongFlowPlan(ft->GetNodeInEdge((6)%50),ft->GetNodeInEdge(0),1,16001,102400*1024, Seconds(starttime));
+
+
+//    Ptr<AppPlanner> aplmice[71];
+//    for(int i=0;i<49;i++){
+//        Ptr<AppPlanner> aplt = new AppPlanner;
+//        aplmice[i] = aplt;
+//        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
+//        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
+//        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
+////        std::cout<<"created "<<i+1<<std::endl;
+//    }
 
     //    apl->AddClientSet(ft->GetNodeInEdge(0));
 //    apl->AddServerSet(ft->GetNodeInEdge(6));
