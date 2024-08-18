@@ -33,6 +33,8 @@ class Ipv4RoutingTableEntry;
 class Ipv4MulticastRoutingTableEntry;
 class Node;
 
+
+
 class Flow : public Object
 {
   public:
@@ -50,6 +52,9 @@ class Flow : public Object
         this->fout.open("Sendp.csv",std::ios::app);
     }
     ~Flow(){};
+
+    void SetRt(Ptr<Ipv4Route> rt){this->Rt = rt;}
+    Ptr<Ipv4Route> GetRt(){return this->Rt;}
 
     //return a hash value of a packet
     static size_t HashPacket(Ptr<Packet> p){
@@ -81,6 +86,10 @@ class Flow : public Object
     size_t HashFLow(){
         this->hash_value = std::hash<std::string>{} (std::to_string(this->srcip.Get())+std::to_string(this->destip.Get())+std::to_string(this->proto)+std::to_string(this->srcport)+std::to_string(this->destport));
         return hash_value;
+    }
+
+    std::string FlowString(){
+        return std::to_string(this->srcip.Get())+std::to_string(this->destip.Get())+std::to_string(this->proto)+std::to_string(this->srcport)+std::to_string(this->destport);
     }
 
     bool EqualFLow(Ptr<Packet> p){
@@ -144,10 +153,14 @@ class Flow : public Object
 
     double GetDroptime(){return this->droptime;}
     void ResetDropTime(){this->droptime = 0;}
-
+    void SetAccuraTime(double t){accurancetime = t;}
+    double GetAccuraTime(){return accurancetime; }
     bool GetLostFlag(){return this->lostflag;}
     void SetLostFlag(bool val) {this->lostflag = val;}
     uint16_t Getdstport(){return this->destport;}
+
+    Ptr<Ipv4Route> Rt;
+
 
   private:
     Ipv4Address srcip,destip;
@@ -168,10 +181,39 @@ class Flow : public Object
     //lost flag
     bool lostflag = true;
     double droptime = 0;
+    double accurancetime = 0;
 
     std::ofstream fout;
 };
 
+
+class Count_MinSketch:public Object{
+  public:
+    Count_MinSketch():rownum(3),colnum(60000),sketch(3,std::vector<int>(60000,0)){
+    }
+    Count_MinSketch(int rown,int coln):rownum(rown),colnum(coln),sketch(rown,std::vector<int>(coln,0)){
+    }
+    int Insert_and_Get(size_t hashv){
+        int idx0,idx1,idx2;
+        idx0 =  hashv%colnum;
+        idx1 = h1.GetHash32(std::to_string(hashv))%colnum;
+        idx2 = h2.GetHash32(std::to_string(hashv))%colnum;
+
+        int cnt0 = ++sketch[0][idx0];
+        int cnt1 = ++sketch[1][idx1];
+        int cnt2 = ++sketch[2][idx2];
+
+        int ans = std::min(cnt0,cnt1);
+        ans = std::min(ans,cnt2);
+        return ans;
+    }
+  private:
+    int rownum;
+    int colnum;
+    std::vector<std::vector<int>> sketch;
+    Hasher h1 = Hasher(Create<Hash::Function::Fnv1a>());
+    Hasher h2 = Hasher(Create<Hash::Function::Murmur3>());
+};
 
 class Ipv4EpsRouting : public Ipv4RoutingProtocol
 {
@@ -240,6 +282,8 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
 
     void SetSSthresh(uint32_t sst){this->ssthresh = sst;}
 
+
+
   protected:
     void DoDispose() override;
 
@@ -253,7 +297,7 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
     Ptr<Ipv4Route> LookupEps(Ipv4Address dest, Ptr<NetDevice> oif = nullptr);
     bool SearchFlowEnqueued(Ipv4Address srcIp,Ipv4Address destIp, uint16_t src_port, uint16_t dst_port, uint8_t protocol,uint32_t q_idx );
     void AddEnqueuedFlow(uint32_t q_idx,Ipv4Address srcIp,Ipv4Address destIp, uint16_t src_port, uint16_t dst_port, uint8_t protocol  );
-    Ptr<Flow> AddUpFlow(Ipv4Address srcIp,Ipv4Address destIp, uint16_t src_port, uint16_t dst_port, uint8_t protocol  );
+    Ptr<Flow> AddUpFlow(Ptr<Ipv4Route> rt,Ipv4Address srcIp,Ipv4Address destIp, uint16_t src_port, uint16_t dst_port, uint8_t protocol  );
     double GetBypassRandom(){return this->bypassrandom->GetValue();}
     uint32_t GetQueueIdx ( Ipv4Address dest);
 //    uint32_t GetLeftFlowSize( Ptr< Packet> p,uint16_t q_idx);
@@ -267,9 +311,28 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
             return pf->second;
     };
 
+    size_t SketchInsert(size_t hashvalue){
+
+        return this->sketch->Insert_and_Get(hashvalue);
+    }
+
+    void EraseFlow(){
+        std::set<size_t> eraseflowid;
+        for(auto iter = all_upflows.begin();iter!=all_upflows.end();iter++){
+            if(ns3::Simulator::Now().GetSeconds() - iter->second->GetAccuraTime() > 0.000520*50)
+                eraseflowid.insert(iter->first);
+        }
+//        if(!eraseflowid.empty())
+//            std::cout<<"erased"<<std::endl;
+        for(auto iter=eraseflowid.begin();iter!=eraseflowid.end();iter++){
+            upflowcnts[all_upflows[*iter]->GetRt()]--;
+            all_upflows.erase(*iter);
+
+        }
+    }
+
     //this route only aim to one device, so we do not need a
     NetworkRoutes m_networkRoutes;
-
     Ptr<Ipv4> m_ipv4;
     //the device connect to ocs switch
     Ptr<NetDevice> to_ocs_device;
@@ -293,6 +356,9 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
 
     //all flows
     std::map<size_t,Ptr<Flow>> all_upflows;
+    std::unordered_map<Ptr<Ipv4Route>,int> upflowcnts;
+    //sketch
+    Count_MinSketch* sketch = new Count_MinSketch();
 
 
     //when at night
@@ -306,6 +372,7 @@ class Ipv4EpsRouting : public Ipv4RoutingProtocol
     BypassStrategy m_bypass;
     //
     uint32_t ssthresh;
+    size_t elephantthresh = 150;
 };
 }
 

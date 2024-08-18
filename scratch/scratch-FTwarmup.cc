@@ -60,41 +60,41 @@ int main(int argc,char* argv[])
 
 //
     Ptr<AppPlanner> apl = new AppPlanner();
-    double starttime = 0.000520;
+    double starttime = 0.000020;
     double addperu = 0.000260;
     int port = 10001;
     int portadd = 100;
     for(int i = 6;i<6+50;i++){
-        if(i == 0)
+        if(i%50 == 0)
             continue;
         apl->LongFlowPlan(ft->GetNodeInEdge((i)%50),ft->GetNodeInEdge(0),80,port,102400*1024, Seconds(starttime));
         starttime += addperu;
         port += portadd;
     }
 
-    port = 17001;
-    portadd = 1;
-    starttime = 0.000520;
-    for(int i = 6;i<6+50;i++){
-        if(i == 0)
-            continue;
-        apl->LongMiceFlowPlan(ft->GetNodeInEdge((i)%50),ft->GetNodeInEdge(0),1,port,102400*1024, Seconds(starttime));
-
-        starttime += addperu;
-        port += portadd;
-    }
+//    port = 17001;
+//    portadd = 1;
+//    starttime = 0.000520;
+//    for(int i = 6;i<6+1;i++){
+//        if(i%50 == 0)
+//            continue;
+//        apl->LongMiceFlowPlan(ft->GetNodeInEdge((i)%50),ft->GetNodeInEdge(0),1,port,102400*1024, Seconds(starttime));
+//
+//        starttime += addperu;
+//        port += portadd;
+//    }
 //    apl->LongFlowPlan(ft->GetNodeInEdge((6)%50),ft->GetNodeInEdge(0),1,16001,102400*1024, Seconds(starttime));
 
 
-//    Ptr<AppPlanner> aplmice[71];
-//    for(int i=0;i<49;i++){
-//        Ptr<AppPlanner> aplt = new AppPlanner;
-//        aplmice[i] = aplt;
-//        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
-//        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
-//        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
-////        std::cout<<"created "<<i+1<<std::endl;
-//    }
+    Ptr<AppPlanner> aplmice[71];
+    for(int i=0;i<49;i++){
+        Ptr<AppPlanner> aplt = new AppPlanner;
+        aplmice[i] = aplt;
+        aplmice[i]->AddClientSet(ft->GetNodeInEdge(0));
+        aplmice[i]->AddServerSet(ft->GetNodeInEdge(i+1));
+        aplmice[i]->CreatePlanFromTrace("/home/venn/ns-allinone-3.38/ns-3.38/utils/FlowGenerate/tracedir/FlowTrace_data_"+std::to_string(i+1)+".csv");
+//        std::cout<<"created "<<i+1<<std::endl;
+    }
 
     //    apl->AddClientSet(ft->GetNodeInEdge(0));
 //    apl->AddServerSet(ft->GetNodeInEdge(6));
@@ -114,7 +114,7 @@ int main(int argc,char* argv[])
 
 
     std::cout<<"start"<<std::endl;
-    Simulator::Stop(Seconds(1));
+    Simulator::Stop(Seconds(0.15));
     Simulator::Run();
     Simulator::Destroy();
     return 0;

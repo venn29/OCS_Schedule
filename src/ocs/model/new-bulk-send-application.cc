@@ -276,7 +276,7 @@ NewBulkSendApplication::SendData(const Address& from, const Address& to)
         OcsTag peekTag;
         packet->PeekPacketTag(peekTag);
         NS_LOG_INFO("KBytes Left : " << peekTag.GetLeftSize());
-
+//        std::cout<<"KBytes Left : " << peekTag.GetLeftSize()<<std::endl;
         int actual = m_socket->Send(packet);
         if ((unsigned)actual == toSend)
         { 

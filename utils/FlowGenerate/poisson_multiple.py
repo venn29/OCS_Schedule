@@ -11,7 +11,7 @@ class FlowGenerator:
         self.flowsize = Flowdistribution_Datamining.FlowSizeDis()
         self.path = "./FlowTrace_data.csv"
         self.endtime = 1e9
-        self.flow_per_second = 1600
+        self.flow_per_second = 350
         self.hostnum = 100
         random.seed(15078)
     
@@ -32,7 +32,7 @@ class FlowGenerator:
             intertime = int(intervalue)
             timenow += intertime
             # fsize = self.flowsize.GetFlowsize()
-            fsize = 30000
+            fsize = 150000
             self.RegisterFlow(timenow,fsize,writer,x%self.hostnum)
             x += 1
             totalbyte += fsize

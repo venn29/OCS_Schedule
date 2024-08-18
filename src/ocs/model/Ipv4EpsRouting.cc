@@ -198,11 +198,31 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
     if(!rtentry)
         return false;
 
-
+    size_t hashvalue = Flow::HashPacket(ipHeader.GetSource(),ipHeader.GetDestination(),protocal,srcport,dstport);
+    Ptr<Flow> pflow = this->Getflow(hashvalue);
+    if(!pflow)
+    {
+        size_t fcnt = SketchInsert(hashvalue);
+        if(fcnt>elephantthresh)
+        {
+            pflow = this->AddUpFlow(rtentry,
+                ipHeader.GetSource(),
+                                    ipHeader.GetDestination(),
+                                    srcport,
+                                    dstport,
+                                    protocal);
+            if(!pflow)
+                return false;
+            pflow->SetRt(rtentry);
+        }
+        else
+            return false;
+    }
+    pflow->SetAccuraTime(ns3::Simulator::Now().GetSeconds());
     OcsTag metaData;
     bool tag_found = packet->RemovePacketTag(metaData);
     uint32_t q_idx = GetQueueIdx(rtentry->GetDestination());
-    uint32_t size = metaData.GetLeftSize();
+//    uint32_t size = metaData.GetLeftSize();
 
     // Get flow size and get the q_idx, no reason ,just speed up the program, it can be split anytime
     //    auto size = GetLeftFlowSize(packet,q_idx);
@@ -233,15 +253,12 @@ Ipv4EpsRouting::RouteInput(Ptr<const Packet> p,
         return false;
     }
 
-    if(size < this->mice_thresh)
-    {
-        std::cout<<"small"<<std::endl;
-        return false;
-    }
+//    if(size < this->mice_thresh)
+//    {
+////        std::cout<<"small"<<std::endl;
+//        return false;
+//    }
     //    std::cout<<"big"<<std::endl;
-    Ptr<Flow> pflow = this->Getflow(Flow::HashPacket(ipHeader.GetSource(),ipHeader.GetDestination(),protocal,srcport,dstport));
-    if(!pflow)
-        pflow = this->AddUpFlow(ipHeader.GetSource(),ipHeader.GetDestination(),srcport,dstport,protocal);
 
 
 
@@ -402,12 +419,17 @@ Ipv4EpsRouting::AddEnqueuedFlow(uint32_t q_idx,Ipv4Address srcIp,Ipv4Address des
 }
 
 Ptr<Flow>
-Ipv4EpsRouting::AddUpFlow(Ipv4Address srcIp,
+Ipv4EpsRouting::AddUpFlow(Ptr<Ipv4Route> rt,
+                          Ipv4Address srcIp,
                           Ipv4Address destIp,
                           uint16_t src_port,
                           uint16_t dst_port,
                           uint8_t protocol)
 {
+    if(upflowcnts[rt] > 80)
+        return nullptr;
+    else
+        upflowcnts[rt]++;
     auto f = new Flow(srcIp,destIp,protocol,src_port,dst_port,this->ssthresh);
     auto hash = f->HashFLow();
     this->all_upflows.insert(std::make_pair(hash,f));
@@ -424,6 +446,7 @@ Ipv4EpsRouting::BeginConfig(Ipv4Address new_addr)
     this->working_queue_index = (this->working_queue_index + 1) % this->queue_number;
     //clear dropped flows for new working queue
     this->enqueued_flows[this->working_queue_index].clear();
+    EraseFlow();
     return this->working_queue_index;
 }
 
@@ -432,6 +455,7 @@ Ipv4EpsRouting::BeginConfig()
 {
     this->working_queue_index = (this->working_queue_index + 1) % this->queue_number;
     this->enqueued_flows[this->working_queue_index].clear();
+    EraseFlow();
     return this->working_queue_index;
 }
 

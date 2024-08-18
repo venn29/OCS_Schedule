@@ -102,6 +102,8 @@ for root,ds,fs in os.walk(CsvPath):
             csvreader = csv.reader(hostfile)
             for row in csvreader:
                 time = float(row[1].split()[1][6:])*1000000000
+                if(time == 0):
+                    continue
                 src = row[2]
                 dst = row[3]
                 srcport = row[4]
@@ -129,6 +131,8 @@ for root,ds,fs in os.walk(CsvPath):
                     continue
                 elif (ack == 1 and seq > 0):
                     flowid = dst+dstport
+                    if(flowid not in flows.keys()):
+                        continue
                     # flowidint = int(flowid)
                     flowget = flows[flowid]
                     flowget.AddDataPacket(time,length,seq,ack)
@@ -136,6 +140,8 @@ for root,ds,fs in os.walk(CsvPath):
                 elif (ack > 1 and seq == 1):
                     flowid = src+srcport
                     # flowidint = int(flowid)
+                    if(flowid not in flows.keys()):
+                        continue
                     flowget = flows[flowid]
                     flowget.AddAckPacket(time,length,seq,ack)
                 #final data packet
